@@ -1,6 +1,8 @@
 # attendance-blockchain-system
 
-A web service for clubs and organizations at Issaquah High School to take attendance and export attendance data. It also happens to utlize a blockchain (that is not decentralized yet). 
+A web service for clubs and organizations at Issaquah High School to take attendance and export attendance data. It also happens to utlize a blockchain (that is not decentralized yet). <br />
+
+Uses ReactJS and crypto-js <br />
 
 Components: 
 -	The attendance blockchain to store attendance data
