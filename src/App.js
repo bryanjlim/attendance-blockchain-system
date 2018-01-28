@@ -7,10 +7,11 @@ export default class App extends Component {
     constructor() 
     {
         super();
-        this.state = {name: '', club:'none', attendanceRecord: new Blockchain(), blockchainstring: ""};
+        this.state = {name: '', club:'none', grade:'select', attendanceRecord: new Blockchain(), blockchainstring: ""};
 
-        this.handleSelectChange = this.handleSelectChange.bind(this);
-        this.handleFormChange = this.handleFormChange.bind(this);
+        this.handleClubChange = this.handleClubChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleGradeChange = this.handleGradeChange.bind(this);
         this.onButtonPress = this.onButtonPress.bind(this);
     }
 
@@ -24,14 +25,19 @@ export default class App extends Component {
         clearInterval(this.interval);
     }
 
-    handleSelectChange(event) 
+    handleClubChange(event) 
     {
         this.setState({club: event.target.value});
     }
 
-    handleFormChange(event) 
+    handleNameChange(event) 
     {
         this.setState({name: event.target.value});
+    }
+
+    handleGradeChange(event) 
+    {
+        this.setState({grade: event.target.value});
     }
 
     onButtonPress(e) 
@@ -52,6 +58,9 @@ export default class App extends Component {
             
             this.state.blockchainstring = (JSON.stringify(this.state.attendanceRecord, null, 4));
             alert("Blockchain Validity: " + this.state.attendanceRecord.verifyBlockchain());
+
+            this.state.name = "";
+            this.state.grade = "nine"
         }
     }
 
@@ -66,16 +75,26 @@ export default class App extends Component {
                     <div class="centerWrapper">
 
                         <div class ="club"> 
-                            <select value={this.state.club} onChange={this.handleSelectChange} class="clubSelect">
-                                    <option value="none">Select a Club</option>
-                                    <option value="robotics">Robotics Club</option>
-                                    <option value="code">Code Club</option>
+                            <select value={this.state.club} onChange={this.handleClubChange} class="clubSelect">
+                                <option value="none">Select a Club</option>
+                                <option value="robotics">Robotics Club</option>
+                                <option value="code">Code Club</option>
                             </select>
                         </div>
 
                         <div class="name">
                             <label class ="nameText">Full Name: </label>
-                            <input type="text" value={this.state.name} onChange={this.handleFormChange} class="nameForm"/>
+                            <input type="text" value={this.state.name} onChange={this.handleNameChange} class="nameForm"/>
+                        </div>
+
+                        <div class ="club"> 
+                            <select value={this.state.grade} onChange={this.handleGradeChange} class="clubSelect">
+                                <option value="select">Select a Grade</option>
+                                <option value="nine">9</option>
+                                <option value="ten">10</option>
+                                <option value="eleven">11</option>
+                                <option value="twelve">12</option>
+                            </select>
                         </div>
 
                         <div class="signInButtonWrapper">
@@ -97,18 +116,19 @@ export default class App extends Component {
 
 class Block
 {
-    constructor(timestamp, name, club)
+    constructor(timestamp, name, club, grade)
     {
         this.timestamp = timestamp;
         this.name = name; 
         this.club = club;
+        this.grade = grade; 
         this.previousHash = ''; 
         this.hash = this.calculateHash(); 
     }
 
     calculateHash()
     {
-        return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data)).toString();
+        return SHA256(this.previousHash + this.timestamp + this.name + this.grade + this.club).toString();
     }
 
 }
