@@ -7,17 +7,22 @@ export default class App extends Component {
     constructor() 
     {
         super();
-        this.state = {name: '', club:'none', grade:'select', attendanceRecord: new Blockchain(), blockchainstring: ""};
+        this.state = {name: '', club:'none', grade:'select', attendanceRecord: new Blockchain(), exportValue: "", exportClub: 'select', exportDates: [<option key={1} value="select">Select A Date</option>], exportDate:''};
 
         this.handleClubChange = this.handleClubChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleGradeChange = this.handleGradeChange.bind(this);
-        this.onButtonPress = this.onButtonPress.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
+
+        this.handleExportClubChange = this.handleExportClubChange.bind(this);
+        this.repopulateExportDates = this.repopulateExportDates.bind(this);
+        this.handleExportDateChange = this.handleExportDateChange.bind(this);
+        this.onExport = this.onExport.bind(this);
     }
 
     componentDidMount() 
     {
-        this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
+        this.interval = setInterval(() => this.setState({ time: Date.now() }), 100);
     }
 
     componentWillUnmount() 
@@ -27,7 +32,7 @@ export default class App extends Component {
 
     handleClubChange(event) 
     {
-        this.setState({club: event.target.value});
+        this.setState({club: event.target.value});  
     }
 
     handleNameChange(event) 
@@ -40,11 +45,11 @@ export default class App extends Component {
         this.setState({grade: event.target.value});
     }
 
-    onButtonPress(e) 
+    onSignIn(e) 
     {
         e.preventDefault(); 
 
-        if(this.state.club == "none"){
+        if(this.state.club == "select"){
             alert("Please select a club");
         }
         else if(this.state.name == ""){
@@ -54,13 +59,70 @@ export default class App extends Component {
             var date = new Date(); 
             var currentDate = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear(); 
 
-            this.state.attendanceRecord.addBlock(new Block(currentDate, this.state.name, this.state.club)); 
-            
-            this.state.blockchainstring = (JSON.stringify(this.state.attendanceRecord, null, 4));
-            alert("Blockchain Validity: " + this.state.attendanceRecord.verifyBlockchain());
+            this.state.attendanceRecord.addBlock(new Block(currentDate, this.state.name, this.state.club, this.state.grade)); 
 
             this.state.name = "";
-            this.state.grade = "nine"
+            this.state.grade = "select"
+        }
+    }
+
+    handleExportClubChange(newValue){
+        this.setState({exportClub: newValue});  
+        this.repopulateExportDates(newValue);
+    }
+
+    handleExportDateChange(event){
+        this.setState({exportDate: event.target.value});
+    }
+
+    repopulateExportDates(club)
+    {
+        
+        for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
+        {
+            this.state.exportDates = [<option key={1} value="select">Select A Date</option>]; 
+            var dates =[]; 
+            var block = this.state.attendanceRecord.chain[i];
+
+            if(block.club == club)
+            {
+                if(i == 0)
+                {
+                    dates[0] = block.timestamp; 
+                }
+                else if(block.timestamp != dates[i-1]){
+                    dates.push(block.timestamp);
+                }
+            }
+        }
+
+        for(var i = 0; i < dates.length; i++) 
+        {
+            this.state.exportDates.push(<option key={i+2} value={dates[i]}>{dates[i]}</option>); 
+        }
+    }
+
+    onExport(e) 
+    {
+        e.preventDefault(); 
+
+        if(this.state.exportClub == "select"){
+            alert("Please select a club");
+        }
+        else if(this.state.exportDate == "select"){
+            alert("Please enter a name");
+        }
+        else{
+            this.state.exportValue = "Attendees on " + this.state.exportDate + ": ";  
+            for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
+            {
+                var block = this.state.attendanceRecord.chain[i];
+
+                if(block.timestamp == this.state.exportDate)
+                {
+                    this.state.exportValue += block.name + " (" + block.grade + "); ";
+                }
+            }
         }
     }
 
@@ -74,9 +136,11 @@ export default class App extends Component {
 
                     <div class="centerWrapper">
 
+                        <h2><u>Individual Sign In</u></h2>
+
                         <div class ="club"> 
                             <select value={this.state.club} onChange={this.handleClubChange} class="clubSelect">
-                                <option value="none">Select a Club</option>
+                                <option value="select">Select a Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="code">Code Club</option>
                             </select>
@@ -90,20 +154,42 @@ export default class App extends Component {
                         <div class ="club"> 
                             <select value={this.state.grade} onChange={this.handleGradeChange} class="clubSelect">
                                 <option value="select">Select a Grade</option>
-                                <option value="nine">9</option>
-                                <option value="ten">10</option>
-                                <option value="eleven">11</option>
-                                <option value="twelve">12</option>
+                                <option value="Grade 9">9</option>
+                                <option value="Grade 10">10</option>
+                                <option value="Grade 11">11</option>
+                                <option value="Grade 12">12</option>
                             </select>
                         </div>
 
                         <div class="signInButtonWrapper">
-                            <button class="signInButton" onClick={(e) => this.onButtonPress(e)}>
+                            <button class="signInButton" onClick={(e) => this.onSignIn(e)}>
                                 Sign In
                             </button>
                         </div>
 
-                        <p>{this.state.blockchainstring}</p>
+                        <h2><u>Export Attendance Data</u></h2>
+
+                        <div class ="club"> 
+                            <select value={this.state.exportClub} onChange={(e) => this.handleExportClubChange(e.target.value)} class="clubSelect">
+                                <option value="select">Select a Club</option>
+                                <option value="robotics">Robotics Club</option>
+                                <option value="code">Code Club</option>
+                            </select>
+                        </div>
+
+                        <div class ="club"> 
+                            <select value={this.state.exportDate} onChange={this.handleExportDateChange} class="clubSelect">
+                                {this.state.exportDates}
+                            </select>
+                        </div>
+
+                        <div class="signInButtonWrapper">
+                            <button class="signInButton" onClick={(e) => this.onExport(e)}>
+                                Export
+                            </button>
+                        </div>
+
+                        <p>{this.state.exportValue}</p>
 
                     </div>
 
