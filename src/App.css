@@ -17,7 +17,7 @@
 }
 
 
-.club {
+.selectWrapper {
   margin-left: auto;
   margin-right: auto; 
   width: 75%;
@@ -31,7 +31,7 @@
   font-size: 1em; 
 }
 
-.clubSelect {
+.select {
   width:100%; 
   border: 2px solid purple;
   border-radius: 8px;
@@ -69,6 +69,26 @@
 }
 
 .signInButton {
+  cursor: pointer; 
+  margin-top:25px; 
+  background-color: darkgoldenrod; 
+  color: white;
+  border:none; 
+  border-radius: 8px; 
+  padding: .5vw 1.5vw;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-family:sans-serif; 
+}
+
+.exportButtonWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exportButton {
   cursor: pointer; 
   margin-top:25px; 
   background-color: darkgoldenrod; 

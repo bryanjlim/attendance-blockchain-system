@@ -138,8 +138,8 @@ export default class App extends Component {
 
                         <h2><u>Individual Sign In</u></h2>
 
-                        <div class ="club"> 
-                            <select value={this.state.club} onChange={this.handleClubChange} class="clubSelect">
+                        <div class ="selectWrapper"> 
+                            <select value={this.state.club} onChange={this.handleClubChange} class="select">
                                 <option value="select">Select a Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="code">Code Club</option>
@@ -151,8 +151,8 @@ export default class App extends Component {
                             <input type="text" value={this.state.name} onChange={this.handleNameChange} class="nameForm"/>
                         </div>
 
-                        <div class ="club"> 
-                            <select value={this.state.grade} onChange={this.handleGradeChange} class="clubSelect">
+                        <div class ="selectWrapper"> 
+                            <select value={this.state.grade} onChange={this.handleGradeChange} class="select">
                                 <option value="select">Select a Grade</option>
                                 <option value="Grade 9">9</option>
                                 <option value="Grade 10">10</option>
@@ -169,22 +169,22 @@ export default class App extends Component {
 
                         <h2><u>Export Attendance Data</u></h2>
 
-                        <div class ="club"> 
-                            <select value={this.state.exportClub} onChange={(e) => this.handleExportClubChange(e.target.value)} class="clubSelect">
+                        <div class ="selectWrapper"> 
+                            <select value={this.state.exportClub} onChange={(e) => this.handleExportClubChange(e.target.value)} class="select">
                                 <option value="select">Select a Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="code">Code Club</option>
                             </select>
                         </div>
 
-                        <div class ="club"> 
-                            <select value={this.state.exportDate} onChange={this.handleExportDateChange} class="clubSelect">
+                        <div class ="selectWrapper"> 
+                            <select value={this.state.exportDate} onChange={this.handleExportDateChange} class="select">
                                 {this.state.exportDates}
                             </select>
                         </div>
 
-                        <div class="signInButtonWrapper">
-                            <button class="signInButton" onClick={(e) => this.onExport(e)}>
+                        <div class="exportButtonWrapper">
+                            <button class="exportButton" onClick={(e) => this.onExport(e)}>
                                 Export
                             </button>
                         </div>
