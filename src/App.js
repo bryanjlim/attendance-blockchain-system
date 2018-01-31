@@ -205,7 +205,7 @@ export default class App extends Component {
                         </div>
 
                         <p>{this.state.exportValue}</p>
-
+                        <b>Blockchain Validity: {this.state.attendanceRecord.verifyBlockchain() ? "True" : "False"}</b>
                     </div>
 
                 </form> 
