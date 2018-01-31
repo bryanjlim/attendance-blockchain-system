@@ -22,7 +22,7 @@ export default class App extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleGradeChange = this.handleGradeChange.bind(this);
         this.onSignIn = this.onSignIn.bind(this);
-
+        
         this.handleExportClubChange = this.handleExportClubChange.bind(this);
         this.repopulateExportDates = this.repopulateExportDates.bind(this);
         this.handleExportDateChange = this.handleExportDateChange.bind(this);
@@ -56,9 +56,9 @@ export default class App extends Component {
         this.setState({grade: event.target.value});
     }
 
-    handleExportClubChange(newValue){
-        this.setState({exportClub: newValue});  
-        this.repopulateExportDates(newValue);
+    handleExportClubChange(event){
+        this.setState({exportClub: event.target.value});  
+        this.repopulateExportDates(event.target.value);
     }
 
     handleExportDateChange(event){
@@ -177,7 +177,7 @@ export default class App extends Component {
                         </div>
 
                         <div class="signInButtonWrapper">
-                            <button class="signInButton" onClick={(e) => this.onSignIn(e)}>
+                            <button class="signInButton" onClick={this.onSignIn}>
                                 Sign In
                             </button>
                         </div>
@@ -185,7 +185,7 @@ export default class App extends Component {
                         <h2><u>Export Attendance Data</u></h2>
 
                         <div class ="selectWrapper"> 
-                            <select value={this.state.exportClub} onChange={(e) => this.handleExportClubChange(e.target.value)} class="select">
+                            <select value={this.state.exportClub} onChange={this.handleExportClubChange} class="select">
                                 <option value="select">Select a Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="code">Code Club</option>
