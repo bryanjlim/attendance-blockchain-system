@@ -81,6 +81,7 @@ export default class App extends Component {
             var currentDate = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear(); 
 
             this.state.attendanceRecord.addBlock(new Block(currentDate, this.state.name, this.state.club, this.state.grade)); 
+            this.repopulateExportDates(this.state.exportClub);
 
             this.state.name = "";
             this.state.grade = "select"
