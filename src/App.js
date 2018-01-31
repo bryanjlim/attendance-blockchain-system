@@ -29,6 +29,7 @@ export default class App extends Component {
         this.onExport = this.onExport.bind(this);
     }
 
+    // Mounting for consistent refreshing
     componentDidMount() 
     {
         this.interval = setInterval(() => this.setState({ time: Date.now() }), 100);
@@ -39,6 +40,7 @@ export default class App extends Component {
         clearInterval(this.interval);
     }
 
+    // Handle form changes
     handleClubChange(event) 
     {
         this.setState({club: event.target.value});  
@@ -54,6 +56,16 @@ export default class App extends Component {
         this.setState({grade: event.target.value});
     }
 
+    handleExportClubChange(newValue){
+        this.setState({exportClub: newValue});  
+        this.repopulateExportDates(newValue);
+    }
+
+    handleExportDateChange(event){
+        this.setState({exportDate: event.target.value});
+    }
+
+    // Sign in verification and block adding process
     onSignIn(e) 
     {
         e.preventDefault(); 
@@ -75,15 +87,7 @@ export default class App extends Component {
         }
     }
 
-    handleExportClubChange(newValue){
-        this.setState({exportClub: newValue});  
-        this.repopulateExportDates(newValue);
-    }
-
-    handleExportDateChange(event){
-        this.setState({exportDate: event.target.value});
-    }
-
+    // Repopulate export dates based on the selected clubs
     repopulateExportDates(club)
     {
         
@@ -111,6 +115,7 @@ export default class App extends Component {
         }
     }
 
+    // Export attendance data based on chosen export club and date
     onExport(e) 
     {
         e.preventDefault(); 
