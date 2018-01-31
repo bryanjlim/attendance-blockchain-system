@@ -21,12 +21,12 @@ export default class App extends Component {
         this.handleClubChange = this.handleClubChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleGradeChange = this.handleGradeChange.bind(this);
-        this.onSignIn = this.onSignIn.bind(this);
+        this.signIn = this.signIn.bind(this);
         
         this.handleExportClubChange = this.handleExportClubChange.bind(this);
         this.repopulateExportDates = this.repopulateExportDates.bind(this);
         this.handleExportDateChange = this.handleExportDateChange.bind(this);
-        this.onExport = this.onExport.bind(this);
+        this.export = this.export.bind(this);
     }
 
     // Mounting for consistent refreshing
@@ -66,7 +66,7 @@ export default class App extends Component {
     }
 
     // Sign in verification and block adding process
-    onSignIn(e) 
+    signIn(e) 
     {
         e.preventDefault(); 
 
@@ -117,7 +117,7 @@ export default class App extends Component {
     }
 
     // Export attendance data based on chosen export club and date
-    onExport(e) 
+    export(e) 
     {
         e.preventDefault(); 
 
@@ -177,7 +177,7 @@ export default class App extends Component {
                         </div>
 
                         <div class="signInButtonWrapper">
-                            <button class="signInButton" onClick={this.onSignIn}>
+                            <button class="signInButton" onClick={this.signIn}>
                                 Sign In
                             </button>
                         </div>
@@ -199,7 +199,7 @@ export default class App extends Component {
                         </div>
 
                         <div class="exportButtonWrapper">
-                            <button class="exportButton" onClick={(e) => this.onExport(e)}>
+                            <button class="exportButton" onClick={this.export}>
                                 Export
                             </button>
                         </div>
