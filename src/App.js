@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-const SHA256 = require('crypto-js/sha256');
+import Block from './Block';
+import Blockchain from './Blockchain';
 
 export default class App extends Component {
 
     constructor() 
     {
         super();
-        this.state = {name: '', club:'none', grade:'select', attendanceRecord: new Blockchain(), exportValue: "", exportClub: 'select', exportDates: [<option key={1} value="select">Select A Date</option>], exportDate:''};
+        this.state = {name: '', 
+                      club:'none', 
+                      grade:'select', 
+                      attendanceRecord: new Blockchain(), 
+                      exportValue: "", 
+                      exportClub: 'select', 
+                      exportDates: [<option key={1} value="select">Select A Date</option>], 
+                      exportDate:''
+                    };
 
         this.handleClubChange = this.handleClubChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -197,67 +206,5 @@ export default class App extends Component {
 
             </div> 
         );
-    }
-}
-
-class Block
-{
-    constructor(timestamp, name, club, grade)
-    {
-        this.timestamp = timestamp;
-        this.name = name; 
-        this.club = club;
-        this.grade = grade; 
-        this.previousHash = ''; 
-        this.hash = this.calculateHash(); 
-    }
-
-    calculateHash()
-    {
-        return SHA256(this.previousHash + this.timestamp + this.name + this.grade + this.club).toString();
-    }
-
-}
-
-class Blockchain
-{
-    constructor()
-    {
-        this.chain = [this.createGenesisBlock()]; 
-    }
-
-    createGenesisBlock()
-    {
-        return new Block("0/00/0000", "Bryan Lim", "robotics"); 
-    }
-
-    getLatestBlock()
-    {
-        return this.chain[this.chain.length - 1]; 
-    }
-
-    addBlock(newBlock)
-    {
-        newBlock.previousHash = this.getLatestBlock().hash; 
-        newBlock.hash = newBlock.calculateHash(); 
-        this.chain.push(newBlock);
-    }
-
-    verifyBlockchain()
-    {
-        for(let i = 1; i < this.chain.length; i++){
-            const currentBlock = this.chain[i];
-            const previousBlock = this.chain[i-1];
-
-            if(currentBlock.hash !== currentBlock.calculateHash()){
-                return false; 
-            }
-
-            if(currentBlock.previousHash !== previousBlock.hash){
-                return false; 
-            }
-
-            return true;
-        }
     }
 }
