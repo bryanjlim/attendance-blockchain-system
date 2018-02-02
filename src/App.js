@@ -77,21 +77,17 @@ export default class App extends Component {
             alert("Please enter a name");
         }
         else{
-            var date = new Date(); 
-            var currentDate = date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear(); 
-
-            this.state.attendanceRecord.addBlock(new Block(currentDate, this.state.name, this.state.club, this.state.grade)); 
+            this.state.attendanceRecord.addBlock(new Block(this.state.name, this.state.club, this.state.grade)); 
             this.repopulateExportDates(this.state.exportClub);
 
             this.state.name = "";
-            this.state.grade = "select"
+            this.state.grade = "select";
         }
     }
 
     // Repopulate export dates based on the selected clubs
     repopulateExportDates(club)
-    {
-        
+    {  
         for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
         {
             this.state.exportDates = [<option key={1} value="select">Select A Date</option>]; 
@@ -102,10 +98,10 @@ export default class App extends Component {
             {
                 if(i == 0)
                 {
-                    dates[0] = block.timestamp; 
+                    dates[0] = block.timestamp.toString(); 
                 }
                 else if(block.timestamp != dates[i-1]){
-                    dates.push(block.timestamp);
+                    dates.push(block.timestamp.toString());
                 }
             }
         }
@@ -133,7 +129,7 @@ export default class App extends Component {
             {
                 var block = this.state.attendanceRecord.chain[i];
 
-                if(block.timestamp == this.state.exportDate)
+                if(block.timestamp == this.state.exportDate && block.club == this.state.exportClub)
                 {
                     this.state.exportValue += block.name + " (" + block.grade + "); ";
                 }

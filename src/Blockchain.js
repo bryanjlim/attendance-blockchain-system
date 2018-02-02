@@ -10,7 +10,7 @@ export default class Blockchain
 
     createGenesisBlock()
     {
-        return new Block("0/00/0000", "Dean Kamen", "Nazareth"); 
+        return new Block("Dean Kamen", "FIRST", "13"); 
     }
 
     getLatestBlock()

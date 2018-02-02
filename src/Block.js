@@ -1,10 +1,11 @@
+import Timestamp from './Timestamp';
 const SHA256 = require('crypto-js/sha256');
 
 export default class Block
 {
-    constructor(timestamp, name, club, grade)
+    constructor(name, club, grade)
     {
-        this.timestamp = timestamp;
+        this.timestamp = new Timestamp();
         this.name = name; 
         this.club = club;
         this.grade = grade; 
@@ -16,5 +17,4 @@ export default class Block
     {
         return SHA256(this.previousHash + this.timestamp + this.name + this.grade + this.club).toString();
     }
-
 }
