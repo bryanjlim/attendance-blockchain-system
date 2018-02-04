@@ -75,20 +75,19 @@ export default class App extends Component {
     repopulateExportDates(club)
     {  
         this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
+
+        var dates =[]; 
+        this.state.exportDates = [<option key={1} value="select">Select A Date</option>]; 
+
         for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
         {
-            this.state.exportDates = [<option key={1} value="select">Select A Date</option>]; 
-            var dates =[]; 
             var block = this.state.attendanceRecord.chain[i];
 
             if(block.club == club)
             {
-                if(i == 0)
+                if(dates.length == 0 || block.timestamp != dates[dates.length-1])
                 {
-                    dates[0] = block.timestamp.toString(); 
-                }
-                else if(block.timestamp != dates[i-1]){
-                    dates.push(block.timestamp.toString());
+                    dates.push(block.timestamp.toString()); 
                 }
             }
         }
