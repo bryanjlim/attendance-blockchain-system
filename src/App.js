@@ -51,15 +51,13 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
-        var numbers = /^[0-9]+$/;
-
         if(this.state.club == "select"){
             alert("Please select a club");
         }
-        else if(this.state.name == "" || /\d/.test(this.state.name)){
-            alert("Please enter a valid name");
+        else if(this.state.name.length < 4 || /\d/.test(this.state.name)){
+            alert("Please enter a valid full name");
         }
-        else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(numbers)){
+        else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(/^[0-9]+$/)){
             alert("Please enter a valid ASB number");
         }
         else{
