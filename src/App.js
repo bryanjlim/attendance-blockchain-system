@@ -51,14 +51,16 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
+        var numbers = /^[0-9]+$/;
+
         if(this.state.club == "select"){
             alert("Please select a club");
         }
-        else if(this.state.name == ""){
-            alert("Please enter your name");
+        else if(this.state.name == "" || /\d/.test(this.state.name)){
+            alert("Please enter a valid name");
         }
-        else if(this.state.asbNumber == ""){
-            alert("Please enter your ASB number");
+        else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(numbers)){
+            alert("Please enter a valid ASB number");
         }
         else{
             var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
@@ -234,5 +236,4 @@ export default class App extends Component {
     handleExportDateChange(event){
         this.setState({exportDate: event.target.value});
     }
-
 }
