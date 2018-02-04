@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Block from './Block';
-import Blockchain from './Blockchain';
+import './styling/App.css';
+import Block from './javascripts/Block';
+import Blockchain from './javascripts/Blockchain';
 
 export default class App extends Component {
 
