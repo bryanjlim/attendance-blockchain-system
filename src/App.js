@@ -38,7 +38,7 @@ export default class App extends Component {
     componentWillMount() 
     {
         this.interval = setInterval(() => this.setState({ time: Date.now() }), 100);
-        this.state.attendanceRecord = this.firebaseHelper.fetchBlockchain(); 
+        this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
     }
 
     componentWillUnmount() 
@@ -74,6 +74,7 @@ export default class App extends Component {
     // Repopulate export dates based on the selected clubs
     repopulateExportDates(club)
     {  
+        this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
         for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
         {
             this.state.exportDates = [<option key={1} value="select">Select A Date</option>]; 
@@ -102,6 +103,8 @@ export default class App extends Component {
     export(e) 
     {
         e.preventDefault(); 
+        
+        this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
 
         if(this.state.exportClub == "select"){
             alert("Please select a club");
