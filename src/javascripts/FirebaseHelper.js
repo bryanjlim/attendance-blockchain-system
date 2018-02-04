@@ -21,13 +21,21 @@ export default class FireBaseHelper
 
     // Pulls blockchain from database
     fetchBlockchain(){
+        alert("fetching");
         let blockchain = new Blockchain();
         
-        this.databaseRef.once("value", function(snapshot){
+        this.databaseRef.on("value", function(snapshot){
             var blocks = []; 
             
             snapshot.forEach(function(data){
-                var block = new Block(data.val().name, data.val().asbnumber, data.val().club, data.val().grade, data.val().timestamp, data.val().previousHash, data.val().hash);
+                var block = new Block(data.val().name, 
+                                      data.val().asbnumber, 
+                                      data.val().club, 
+                                      data.val().grade, 
+                                      new Timestamp(data.val().timestamp.day,data.val().timestamp.month,data.val().timestamp.year), 
+                                      data.val().previousHash, 
+                                      data.val().hash
+                                    );
                 blocks.push(block);
             })
             blockchain.chain = blocks; 
@@ -39,7 +47,7 @@ export default class FireBaseHelper
     // Adds singular block to database
     addBlockToDatabase(block, blockchain){
         block.previousHash = blockchain.getLatestBlock().hash;  
-        block.timestamp = new Timestamp(); 
+        block.timestamp = new Timestamp().setCurrentTime(); 
         block.hash = block.calculateHash(); 
         this.databaseRef.push(block);
     }

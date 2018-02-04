@@ -66,6 +66,7 @@ export default class App extends Component {
             this.repopulateExportDates(this.state.exportClub);
 
             this.state.name = "";
+            this.state.asbNumber = "";
             this.state.grade = "select";
         }
     }
