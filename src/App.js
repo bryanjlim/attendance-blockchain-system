@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styling/App.css';
 import Block from './javascripts/Block';
 import Blockchain from './javascripts/Blockchain';
+import FirebaseHelper from './javascripts/FirebaseHelper';
 
 export default class App extends Component {
 
@@ -10,6 +11,7 @@ export default class App extends Component {
         super();
         this.state = {name: '', 
                       club:'none', 
+                      asbNumber: '',
                       grade:'select', 
                       attendanceRecord: new Blockchain(), 
                       exportValue: "", 
@@ -18,8 +20,11 @@ export default class App extends Component {
                       exportDate:''
                     };
 
+        this.firebaseHelper = new FirebaseHelper(); 
+
         this.handleClubChange = this.handleClubChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleASBNumberChange = this.handleASBNumberChange.bind(this);
         this.handleGradeChange = this.handleGradeChange.bind(this);
         this.signIn = this.signIn.bind(this);
         
@@ -30,39 +35,15 @@ export default class App extends Component {
     }
 
     // Mounting for consistent refreshing
-    componentDidMount() 
+    componentWillMount() 
     {
         this.interval = setInterval(() => this.setState({ time: Date.now() }), 100);
+        this.state.attendanceRecord = this.firebaseHelper.fetchBlockchain(); 
     }
 
     componentWillUnmount() 
     {
         clearInterval(this.interval);
-    }
-
-    // Handle form changes
-    handleClubChange(event) 
-    {
-        this.setState({club: event.target.value});  
-    }
-
-    handleNameChange(event) 
-    {
-        this.setState({name: event.target.value});
-    }
-
-    handleGradeChange(event) 
-    {
-        this.setState({grade: event.target.value});
-    }
-
-    handleExportClubChange(event){
-        this.setState({exportClub: event.target.value});  
-        this.repopulateExportDates(event.target.value);
-    }
-
-    handleExportDateChange(event){
-        this.setState({exportDate: event.target.value});
     }
 
     // Sign in verification and block adding process
@@ -74,10 +55,14 @@ export default class App extends Component {
             alert("Please select a club");
         }
         else if(this.state.name == ""){
-            alert("Please enter a name");
+            alert("Please enter your name");
+        }
+        else if(this.state.asbNumber == ""){
+            alert("Please enter your ASB number");
         }
         else{
-            this.state.attendanceRecord.addBlock(new Block(this.state.name, this.state.club, this.state.grade)); 
+            var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
+            this.firebaseHelper.addBlockToDatabase(addBlock, this.state.attendanceRecord);
             this.repopulateExportDates(this.state.exportClub);
 
             this.state.name = "";
@@ -121,7 +106,7 @@ export default class App extends Component {
             alert("Please select a club");
         }
         else if(this.state.exportDate == "select"){
-            alert("Please enter a name");
+            alert("Please select an export date");
         }
         else{
             this.state.exportValue = "Attendees on " + this.state.exportDate + ": ";  
@@ -154,12 +139,18 @@ export default class App extends Component {
                                 <option value="select">Select a Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="code">Code Club</option>
+                                <option value="test">Test Club</option>
                             </select>
                         </div>
 
                         <div class="name">
                             <label class ="nameText">Full Name: </label>
                             <input type="text" value={this.state.name} onChange={this.handleNameChange} class="nameForm"/>
+                        </div>
+
+                        <div class="name">
+                            <label class ="nameText">ASB Number (Optional): </label>
+                            <input type="text" value={this.state.asbNumber} onChange={this.handleASBNumberChange} class="nameForm"/>
                         </div>
 
                         <div class ="selectWrapper"> 
@@ -185,6 +176,7 @@ export default class App extends Component {
                                 <option value="select">Select a Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="code">Code Club</option>
+                                <option value="test">Test Club</option>
                             </select>
                         </div>
 
@@ -209,4 +201,35 @@ export default class App extends Component {
             </div> 
         );
     }
+
+    // Handle form changes
+    handleClubChange(event) 
+    {
+        this.setState({club: event.target.value});  
+    }
+
+    handleNameChange(event) 
+    {
+        this.setState({name: event.target.value});
+    }
+
+    handleASBNumberChange(event) 
+    {
+        this.setState({asbNumber: event.target.value});
+    }
+
+    handleGradeChange(event) 
+    {
+        this.setState({grade: event.target.value});
+    }
+
+    handleExportClubChange(event){
+        this.setState({exportClub: event.target.value});  
+        this.repopulateExportDates(event.target.value);
+    }
+
+    handleExportDateChange(event){
+        this.setState({exportDate: event.target.value});
+    }
+
 }

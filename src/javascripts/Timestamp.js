@@ -4,7 +4,7 @@ export default class Timestamp
     {
         var date = new Date(); 
         this.day = date.getDate(); 
-        this.month = date.getMonth();
+        this.month = date.getMonth() + 1;
         this.year = date.getFullYear(); 
     }
 

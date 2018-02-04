@@ -5,24 +5,12 @@ export default class Blockchain
 {
     constructor()
     {
-        this.chain = [this.createGenesisBlock()]; 
-    }
-
-    createGenesisBlock()
-    {
-        return new Block("Dean Kamen", "FIRST", "13"); 
+        this.chain = []; 
     }
 
     getLatestBlock()
     {
         return this.chain[this.chain.length - 1]; 
-    }
-
-    addBlock(newBlock)
-    {
-        newBlock.previousHash = this.getLatestBlock().hash; 
-        newBlock.hash = newBlock.calculateHash(); 
-        this.chain.push(newBlock);
     }
 
     verifyBlockchain()
@@ -35,7 +23,7 @@ export default class Blockchain
                 return false; 
             }
 
-            if(currentBlock.previousHash !== previousBlock.hash){
+            if(currentBlock.previousHash !== previousBlock.calculateHash()){
                 return false; 
             }
 
