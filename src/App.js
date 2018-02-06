@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styling/App.css';
 import Block from './javascripts/Block';
 import Blockchain from './javascripts/Blockchain';
+import Timestamp from './javascripts/Timestamp';
 import FirebaseHelper from './javascripts/FirebaseHelper';
 
 export default class App extends Component {
@@ -60,6 +61,10 @@ export default class App extends Component {
         else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(/^[0-9]+$/)){
             alert("Please enter a valid ASB number");
         }
+        else if(this.isDuplicateEntry())
+        {
+            alert("You have already signed in today");
+        }
         else{
             var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
             this.firebaseHelper.addBlockToDatabase(addBlock, this.state.attendanceRecord);
@@ -69,6 +74,20 @@ export default class App extends Component {
             this.state.asbNumber = "";
             this.state.grade = "select";
         }
+    }
+
+    isDuplicateEntry(){
+        var currentTime = new Timestamp();
+        currentTime.setCurrentTime(); 
+
+        for(var i =0; i < this.state.attendanceRecord.chain.length; i++){
+            if(this.state.attendanceRecord.chain[i].asbNumber == this.state.asbNumber 
+                && this.state.attendanceRecord.chain[i].timestamp == currentTime.toString())
+            {
+                return true; 
+            }
+        }
+        return false; 
     }
 
     // Repopulate export dates based on the selected clubs
