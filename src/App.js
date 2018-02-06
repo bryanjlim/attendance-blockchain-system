@@ -51,7 +51,7 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
-        if(this.state.club === "select"){
+        if(this.state.club == "select"){
             alert("Please select a club");
         }
         else if(this.state.name.length < 4 || /\d/.test(this.state.name)){
@@ -83,9 +83,9 @@ export default class App extends Component {
         {
             var block = this.state.attendanceRecord.chain[i];
 
-            if(block.club === club)
+            if(block.club == club)
             {
-                if(dates.length === 0 || block.timestamp !== dates[dates.length-1])
+                if(dates.length == 0 || block.timestamp != dates[dates.length-1])
                 {
                     dates.push(block.timestamp.toString()); 
                 }
@@ -105,23 +105,45 @@ export default class App extends Component {
         
         this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
 
-        if(this.state.exportClub === "select"){
+        if(this.state.exportClub == "select"){
             alert("Please select a club");
         }
-        else if(this.state.exportDate === "select"){
+        else if(this.state.exportDate == "select"){
             alert("Please select an export date");
         }
         else{
-            this.state.exportValue = "Attendees on " + this.state.exportDate + ": ";  
+            /*this.state.exportValue = "Attendees on " + this.state.exportDate + ": ";  
             for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
             {
                 var block = this.state.attendanceRecord.chain[i];
 
-                if(block.timestamp === this.state.exportDate && block.club === this.state.exportClub)
+                if(block.timestamp == this.state.exportDate && block.club == this.state.exportClub)
                 {
                     this.state.exportValue += block.name + " (" + block.grade + "); ";
                 }
-            }
+            }*/
+			var rows = [["Grade", "Name", "ASB #"]];
+			var rowNum = 1;
+			for(var i = 0; i < this.state.attendanceRecord.chain.length; i++){
+				var block = this.state.attendanceRecord.chain[i];
+				if(block.timestamp == this.state.exportDate && block.club == this.state.exportClub){
+					rows[rowNum] = [block.grade, block.name, block.asbNumber];
+					rowNum++;
+				}
+			}
+			let csvContent = "data:text/csv;charset=utf-8,";
+			rows.forEach(function(rowArray){
+			   let row = rowArray.join(",");
+			   csvContent += row + "\r\n";
+			}); 
+			
+			var encodedUri = encodeURI(csvContent);
+			var link = document.createElement("a");
+			link.setAttribute("href", encodedUri);
+			link.setAttribute("download", "club_data.csv");
+			document.body.appendChild(link);
+
+			link.click();
         }
     }
 
