@@ -1,6 +1,3 @@
-import Block from './Block';
-require('./Block');
-
 export default class Blockchain
 {
     constructor()

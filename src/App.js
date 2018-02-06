@@ -51,7 +51,7 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
-        if(this.state.club == "select"){
+        if(this.state.club === "select"){
             alert("Please select a club");
         }
         else if(this.state.name.length < 4 || /\d/.test(this.state.name)){
@@ -83,9 +83,9 @@ export default class App extends Component {
         {
             var block = this.state.attendanceRecord.chain[i];
 
-            if(block.club == club)
+            if(block.club === club)
             {
-                if(dates.length == 0 || block.timestamp != dates[dates.length-1])
+                if(dates.length === 0 || block.timestamp !== dates[dates.length-1])
                 {
                     dates.push(block.timestamp.toString()); 
                 }
@@ -105,10 +105,10 @@ export default class App extends Component {
         
         this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
 
-        if(this.state.exportClub == "select"){
+        if(this.state.exportClub === "select"){
             alert("Please select a club");
         }
-        else if(this.state.exportDate == "select"){
+        else if(this.state.exportDate === "select"){
             alert("Please select an export date");
         }
         else{
@@ -117,7 +117,7 @@ export default class App extends Component {
             {
                 var block = this.state.attendanceRecord.chain[i];
 
-                if(block.timestamp == this.state.exportDate && block.club == this.state.exportClub)
+                if(block.timestamp === this.state.exportDate && block.club === this.state.exportClub)
                 {
                     this.state.exportValue += block.name + " (" + block.grade + "); ";
                 }

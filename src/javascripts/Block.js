@@ -1,4 +1,3 @@
-import Timestamp from './Timestamp';
 const SHA256 = require('crypto-js/sha256');
 
 export default class Block

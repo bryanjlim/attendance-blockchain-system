@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
 import Block from './Block';
-import Blockchain from './Blockchain'; 
 import Timestamp from './Timestamp';
 
 export default class FireBaseHelper
