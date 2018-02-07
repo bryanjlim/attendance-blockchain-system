@@ -53,14 +53,16 @@ export default class App extends Component {
     // Sign in verification and block adding process
     signIn(e) 
     {
-        e.preventDefault(); 
+        e.preventDefault();
 
+        alert(Math.abs(this.geolocationHelper.longitude - -122.028751));
+        
         if(this.state.club == "select")
         {
             alert("Please select a club");
         }
-        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .007 ||  
-                Math.abs(this.geolocationHelper.longitude - -122.028751) > .007)
+        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .04 ||  
+                Math.abs(this.geolocationHelper.longitude - -122.028751) > .04)
         {
             alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
         }
