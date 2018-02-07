@@ -55,12 +55,15 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
+        alert(Math.abs(this.geolocationHelper.latitude - 47.522533));
+        alert(Math.abs(this.geolocationHelper.longitude - -122.028751));
+
         if(this.state.club == "select")
         {
             alert("Please select a club");
         }
-        else if(Math.abs(this.geolocationHelper.langitude - 47.522533) < .01 || 
-                Math.abs(this.geolocationHelper.longitude - -122.028751) < .01)
+        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .007 || 
+                Math.abs(this.geolocationHelper.longitude - -122.028751) > .007)
         {
             alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
         }
@@ -68,16 +71,16 @@ export default class App extends Component {
         {
             alert("Please enter a valid full name");
         }
-        else if(this.state.asbNumber.length < 2)
-        {
-            this.state.asbNumber = 0; 
-        }
         else if(this.isDuplicateEntry())
         {
             alert("You have already signed in today");
         }
         else
         {
+            if(this.state.asbNumber.length < 2)
+            {
+                this.state.asbNumber = 0; 
+            }
             var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
             this.firebaseHelper.addBlockToDatabase(addBlock, this.state.attendanceRecord);
             this.repopulateExportDates(this.state.exportClub);

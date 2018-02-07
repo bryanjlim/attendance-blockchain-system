@@ -7,13 +7,13 @@ export default class FireBaseHelper
     constructor()
     {
         var config = {
-            apiKey: "AIzaSyDukhtNGwrBJmT25Tnuj5XMlfC4pV5n9fE",
-            authDomain: "attendanceblockchainsystem.firebaseapp.com",
-            databaseURL: "https://attendanceblockchainsystem.firebaseio.com",
-            projectId: "attendanceblockchainsystem",
-            storageBucket: "attendanceblockchainsystem.appspot.com",
-            messagingSenderId: "1083154364354"
-          }
+            apiKey: "AIzaSyDLrLyawb7-sC86nPa_Y4c4U07oI4gD7bk",
+            authDomain: "issaquah-attendance-bloc-c0c08.firebaseapp.com",
+            databaseURL: "https://issaquah-attendance-bloc-c0c08.firebaseio.com",
+            projectId: "issaquah-attendance-bloc-c0c08",
+            storageBucket: "issaquah-attendance-bloc-c0c08.appspot.com",
+            messagingSenderId: "706537935134"
+        }
         firebase.initializeApp(config);
         this.databaseRef = firebase.database().ref(); 
     }
