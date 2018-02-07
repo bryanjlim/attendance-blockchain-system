@@ -4,6 +4,7 @@ import Block from './javascripts/Block';
 import Blockchain from './javascripts/Blockchain';
 import Timestamp from './javascripts/Timestamp';
 import FirebaseHelper from './javascripts/FirebaseHelper';
+import GeolocationHelper from './javascripts/GeolocationHelper';
 
 export default class App extends Component {
 
@@ -33,6 +34,8 @@ export default class App extends Component {
         this.repopulateExportDates = this.repopulateExportDates.bind(this);
         this.handleExportDateChange = this.handleExportDateChange.bind(this);
         this.export = this.export.bind(this);
+
+        this.geolocationHelper = new GeolocationHelper(); 
     }
 
     // Mounting for consistent refreshing
@@ -52,20 +55,29 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
-        if(this.state.club == "select"){
+        if(this.state.club == "select")
+        {
             alert("Please select a club");
         }
-        else if(this.state.name.length < 4 || /\d/.test(this.state.name)){
+        else if(Math.abs(this.geolocationHelper.langitude - 47.522533) < .01 || 
+                Math.abs(this.geolocationHelper.longitude - -122.028751) < .01)
+        {
+            alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
+        }
+        else if(this.state.name.length < 4 || /\d/.test(this.state.name))
+        {
             alert("Please enter a valid full name");
         }
-        else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(/^[0-9]+$/)){
+        else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(/^[0-9]+$/))
+        {
             alert("Please enter a valid ASB number");
         }
         else if(this.isDuplicateEntry())
         {
             alert("You have already signed in today");
         }
-        else{
+        else
+        {
             var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
             this.firebaseHelper.addBlockToDatabase(addBlock, this.state.attendanceRecord);
             this.repopulateExportDates(this.state.exportClub);
@@ -76,7 +88,8 @@ export default class App extends Component {
         }
     }
 
-    isDuplicateEntry(){
+    isDuplicateEntry()
+    {
         var currentTime = new Timestamp();
         currentTime.setCurrentTime(); 
 
@@ -156,7 +169,7 @@ export default class App extends Component {
 			link.click();
         }
     }
-    
+
     render() {
         return (
             <div class="mainScreen">
