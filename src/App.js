@@ -62,7 +62,7 @@ export default class App extends Component {
         {
             alert("Please select a club");
         }
-        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .007 || 
+        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .007 ||  
                 Math.abs(this.geolocationHelper.longitude - -122.028751) > .007)
         {
             alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
@@ -98,7 +98,8 @@ export default class App extends Component {
 
         for(var i =0; i < this.state.attendanceRecord.chain.length; i++){
             if(this.state.attendanceRecord.chain[i].asbNumber == this.state.asbNumber 
-                && this.state.attendanceRecord.chain[i].timestamp == currentTime.toString())
+                && this.state.attendanceRecord.chain[i].timestamp == currentTime.toString()
+                && this.state.attendanceRecord.chain[i].grade == this.state.grade)
             {
                 return true; 
             }
