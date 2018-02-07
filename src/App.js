@@ -68,9 +68,9 @@ export default class App extends Component {
         {
             alert("Please enter a valid full name");
         }
-        else if(this.state.asbNumber.length < 5 || !this.state.asbNumber.match(/^[0-9]+$/))
+        else if(this.state.asbNumber.length < 2)
         {
-            alert("Please enter a valid ASB number");
+            this.state.asbNumber = 0; 
         }
         else if(this.isDuplicateEntry())
         {
@@ -197,7 +197,7 @@ export default class App extends Component {
                         </div>
 
                         <div class="name">
-                            <label class ="nameText">ASB Number: </label>
+                            <label class ="nameText">ASB Number (Optional): </label>
                             <input type="text" value={this.state.asbNumber} onChange={this.handleASBNumberChange} class="nameForm"/>
                         </div>
 
