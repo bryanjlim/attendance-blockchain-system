@@ -55,9 +55,6 @@ export default class App extends Component {
     {
         e.preventDefault(); 
 
-        alert(Math.abs(this.geolocationHelper.latitude - 47.522533));
-        alert(Math.abs(this.geolocationHelper.longitude - -122.028751));
-
         if(this.state.club == "select")
         {
             alert("Please select a club");
@@ -165,7 +162,7 @@ export default class App extends Component {
 			
 			var encodedUri = encodeURI(csvContent);
             var link = document.createElement("a");
-            var csvFileName = (this.state.exportClub.charAt(0).toUpperCase() + this.state.exportClub.slice(1)) + " Club " + this.state.exportDate + " Attendance.csv"; 
+            var csvFileName = (this.state.exportClub.charAt(0).toUpperCase() + this.state.exportClub.slice(1)) + " " + this.state.exportDate + " Attendance.csv"; 
 			link.setAttribute("href", encodedUri);
 			link.setAttribute("download", csvFileName);
 			document.body.appendChild(link);
@@ -180,7 +177,7 @@ export default class App extends Component {
 
                 <form>
 
-                    <h1 class="title">Attendance Blockchain System</h1>
+                    <h1 class="title">Attendance Blockchain System (Beta)</h1>
 
                     <div class="centerWrapper">
 
@@ -188,10 +185,19 @@ export default class App extends Component {
 
                         <div class ="selectWrapper"> 
                             <select value={this.state.club} onChange={this.handleClubChange} class="select">
-                                <option value="select">Select a Club</option>
-                                <option value="robotics">Robotics Club</option>
-                                <option value="code">Code Club</option>
-                                <option value="test">Test Club</option>
+                            <option value="select">Select a Club</option>
+                            <option value="astronomy">Astronomy Club</option>
+                            <option value="code">Code Club</option>
+                            <option value="creativewriting">Creative Writing Club</option>
+                            <option value="girlswhocode">Girls Who Code</option>
+                            <option value="green">Green Team</option>
+                            <option value="japanese">Japanese Club</option>
+                            <option value="JSA">Junior State of America</option>
+                            <option value="NHS">National Honor Society</option>
+                            <option value="poker">Poker Club</option>
+                            <option value="robotics">Robotics Club</option>
+                            <option value="starkillerbase">Starkiller Base</option>
+                            <option value="test">Test Club (Beta Testing)</option>
                             </select>
                         </div>
 
@@ -226,9 +232,18 @@ export default class App extends Component {
                         <div class ="selectWrapper"> 
                             <select value={this.state.exportClub} onChange={this.handleExportClubChange} class="select">
                                 <option value="select">Select a Club</option>
-                                <option value="robotics">Robotics Club</option>
+                                <option value="astronomy">Astronomy Club</option>
                                 <option value="code">Code Club</option>
-                                <option value="test">Test Club</option>
+                                <option value="creativewriting">Creative Writing Club</option>
+                                <option value="girlswhocode">Girls Who Code</option>
+                                <option value="green">Green Team</option>
+                                <option value="japanese">Japanese Club</option>
+                                <option value="JSA">Junior State of America</option>
+                                <option value="NHS">National Honor Society</option>
+                                <option value="poker">Poker Club</option>
+                                <option value="robotics">Robotics Club</option>
+                                <option value="starkillerbase">Starkiller Base</option>
+                                <option value="test">Test Club (Beta Testing)</option>
                             </select>
                         </div>
 
