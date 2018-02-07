@@ -131,16 +131,6 @@ export default class App extends Component {
             alert("Please select an export date");
         }
         else{
-            /*this.state.exportValue = "Attendees on " + this.state.exportDate + ": ";  
-            for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
-            {
-                var block = this.state.attendanceRecord.chain[i];
-
-                if(block.timestamp == this.state.exportDate && block.club == this.state.exportClub)
-                {
-                    this.state.exportValue += block.name + " (" + block.grade + "); ";
-                }
-            }*/
 			var rows = [["Grade", "Name", "ASB #"]];
 			var rowNum = 1;
 			for(var i = 0; i < this.state.attendanceRecord.chain.length; i++){
@@ -157,15 +147,16 @@ export default class App extends Component {
 			}); 
 			
 			var encodedUri = encodeURI(csvContent);
-			var link = document.createElement("a");
+            var link = document.createElement("a");
+            var csvFileName = (this.state.exportClub.charAt(0).toUpperCase() + this.state.exportClub.slice(1)) + " Club " + this.state.exportDate + " Attendance.csv"; 
 			link.setAttribute("href", encodedUri);
-			link.setAttribute("download", "club_data.csv");
+			link.setAttribute("download", csvFileName);
 			document.body.appendChild(link);
 
 			link.click();
         }
     }
-
+    
     render() {
         return (
             <div class="mainScreen">
@@ -193,7 +184,7 @@ export default class App extends Component {
                         </div>
 
                         <div class="name">
-                            <label class ="nameText">ASB Number (Optional): </label>
+                            <label class ="nameText">ASB Number: </label>
                             <input type="text" value={this.state.asbNumber} onChange={this.handleASBNumberChange} class="nameForm"/>
                         </div>
 
