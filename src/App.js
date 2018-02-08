@@ -98,7 +98,8 @@ export default class App extends Component {
         for(var i =0; i < this.state.attendanceRecord.chain.length; i++){
             if(this.state.attendanceRecord.chain[i].asbNumber == this.state.asbNumber 
                 && this.state.attendanceRecord.chain[i].timestamp == currentTime.toString()
-                && this.state.attendanceRecord.chain[i].grade == this.state.grade)
+                && this.state.attendanceRecord.chain[i].grade == this.state.grade
+                && this.state.attendanceRecord.chain[i].name == this.state.name)
             {
                 return true; 
             }
