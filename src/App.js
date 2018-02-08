@@ -55,8 +55,6 @@ export default class App extends Component {
     {
         e.preventDefault();
 
-        alert(Math.abs(this.geolocationHelper.longitude - -122.028751));
-        
         if(this.state.club == "select")
         {
             alert("Please select a club");
@@ -188,19 +186,19 @@ export default class App extends Component {
 
                         <div class ="selectWrapper"> 
                             <select value={this.state.club} onChange={this.handleClubChange} class="select">
-                            <option value="select">Select a Club</option>
-                            <option value="astronomy">Astronomy Club</option>
-                            <option value="code">Code Club</option>
-                            <option value="creativewriting">Creative Writing Club</option>
-                            <option value="girlswhocode">Girls Who Code</option>
-                            <option value="green">Green Team</option>
-                            <option value="japanese">Japanese Club</option>
-                            <option value="JSA">Junior State of America</option>
-                            <option value="NHS">National Honor Society</option>
-                            <option value="poker">Poker Club</option>
-                            <option value="robotics">Robotics Club</option>
-                            <option value="starkillerbase">Starkiller Base</option>
-                            <option value="test">Test Club (Beta Testing)</option>
+                                <option value="select">Select a Club</option>
+                                <option value="astronomy">Astronomy Club</option>
+                                <option value="code">Code Club</option>
+                                <option value="creativewriting">Creative Writing Club</option>
+                                <option value="girlswhocode">Girls Who Code</option>
+                                <option value="green">Green Team</option>
+                                <option value="hiking">Hiking Club</option>
+                                <option value="japanese">Japanese Club</option>
+                                <option value="JSA">Junior State of America</option>
+                                <option value="NHS">National Honor Society</option>
+                                <option value="robotics">Robotics Club</option>
+                                <option value="starkillerbase">Starkiller Base</option>
+                                <option value="test">Test Club (Beta Testing)</option>
                             </select>
                         </div>
 
@@ -240,10 +238,10 @@ export default class App extends Component {
                                 <option value="creativewriting">Creative Writing Club</option>
                                 <option value="girlswhocode">Girls Who Code</option>
                                 <option value="green">Green Team</option>
+                                <option value="hiking">Hiking Club</option>
                                 <option value="japanese">Japanese Club</option>
                                 <option value="JSA">Junior State of America</option>
                                 <option value="NHS">National Honor Society</option>
-                                <option value="poker">Poker Club</option>
                                 <option value="robotics">Robotics Club</option>
                                 <option value="starkillerbase">Starkiller Base</option>
                                 <option value="test">Test Club (Beta Testing)</option>
