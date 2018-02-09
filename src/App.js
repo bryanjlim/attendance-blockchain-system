@@ -76,10 +76,17 @@ export default class App extends Component {
         {
             if(this.state.asbNumber.length < 2)
             {
-                this.state.asbNumber = 0; 
+                this.state.asbNumber = ""; 
             }
+            var currentTime = new Timestamp();
+            currentTime.setCurrentTime(); 
+
             var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
-            this.firebaseHelper.addBlockToDatabase(addBlock, this.state.attendanceRecord);
+            addBlock.previousHash = this.state.attendanceRecord.getLatestBlock().hash;  
+            addBlock.timestamp = currentTime; 
+            addBlock.hash = addBlock.calculateHash(); 
+
+            this.firebaseHelper.addBlockToDatabase(addBlock);
             this.repopulateExportDates(this.state.exportClub);
 
             this.state.name = "";
@@ -97,7 +104,8 @@ export default class App extends Component {
             if(this.state.attendanceRecord.chain[i].asbNumber == this.state.asbNumber 
                 && this.state.attendanceRecord.chain[i].timestamp == currentTime.toString()
                 && this.state.attendanceRecord.chain[i].grade == this.state.grade
-                && this.state.attendanceRecord.chain[i].name == this.state.name)
+                && this.state.attendanceRecord.chain[i].name == this.state.name
+                && this.state.attendanceRecord.chain[i].club == this.state.club)
             {
                 return true; 
             }
@@ -190,6 +198,7 @@ export default class App extends Component {
                                 <option value="astronomy">Astronomy Club</option>
                                 <option value="code">Code Club</option>
                                 <option value="creativewriting">Creative Writing Club</option>
+                                <option value="french">French Club</option>
                                 <option value="girlswhocode">Girls Who Code</option>
                                 <option value="green">Green Team</option>
                                 <option value="hiking">Hiking Club</option>
@@ -236,6 +245,7 @@ export default class App extends Component {
                                 <option value="astronomy">Astronomy Club</option>
                                 <option value="code">Code Club</option>
                                 <option value="creativewriting">Creative Writing Club</option>
+                                <option value="french">French Club</option>
                                 <option value="girlswhocode">Girls Who Code</option>
                                 <option value="green">Green Team</option>
                                 <option value="hiking">Hiking Club</option>

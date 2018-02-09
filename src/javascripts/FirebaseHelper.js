@@ -39,14 +39,7 @@ export default class FireBaseHelper
     } 
 
     // Adds singular block to database
-    addBlockToDatabase(block, blockchain){
-        block.previousHash = blockchain.getLatestBlock().hash;  
-
-        var currentTime = new Timestamp();
-        currentTime.setCurrentTime(); 
-        block.timestamp = currentTime; 
-
-        block.hash = block.calculateHash(); 
+    addBlockToDatabase(block){
         this.databaseRef.push(block);
     }
 }
