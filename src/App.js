@@ -68,6 +68,9 @@ export default class App extends Component {
         {
             alert("Please enter a valid full name");
         }
+        else if(this.state.asbNumber.length > 0 && !this.state.asbNumber.match(/^[0-9]+$/)){
+            alert("Please enter a valid ASB number (This is optional. Leave field blank to exclude)");
+        }
         else if(this.isDuplicateEntry())
         {
             alert("You have already signed in today");
