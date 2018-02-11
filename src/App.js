@@ -59,11 +59,11 @@ export default class App extends Component {
         {
             alert("Please select a club");
         }
-        // else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .04 ||  
-        //         Math.abs(this.geolocationHelper.longitude - -122.028751) > .04)
-        // {
-        //     alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
-        // }
+        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .04 ||  
+                Math.abs(this.geolocationHelper.longitude - -122.028751) > .04)
+        {
+            alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
+        }
         else if(this.state.name.length < 4 || /\d/.test(this.state.name))
         {
             alert("Please enter a valid full name");
