@@ -12,13 +12,13 @@ export default class App extends Component {
     {
         super();
         this.state = {name: '', 
-                      club:'none', 
+                      club:'Not Selected', 
                       asbNumber: '',
-                      grade:'select', 
+                      grade:'Not Selected', 
                       attendanceRecord: new Blockchain(), 
                       exportValue: "", 
-                      exportClub: 'select', 
-                      exportDates: [<option key={1} value="select">Select A Date</option>], 
+                      exportClub: 'Not Selected', 
+                      exportDates: [<option key={1} value="Not Selected">Select A Date</option>], 
                       exportDate:''
                     };
 
@@ -55,15 +55,15 @@ export default class App extends Component {
     {
         e.preventDefault();
 
-        if(this.state.club == "select")
+        if(this.state.club == "Not Selected")
         {
             alert("Please select a club");
         }
-        else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .04 ||  
-                Math.abs(this.geolocationHelper.longitude - -122.028751) > .04)
-        {
-            alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
-        }
+        // else if(Math.abs(this.geolocationHelper.latitude - 47.522533) > .04 ||  
+        //         Math.abs(this.geolocationHelper.longitude - -122.028751) > .04)
+        // {
+        //     alert("Your location is not detected to be at Issaquah High School. Try connecting to the Wi-Fi or relocating.")
+        // }
         else if(this.state.name.length < 4 || /\d/.test(this.state.name))
         {
             alert("Please enter a valid full name");
@@ -74,14 +74,19 @@ export default class App extends Component {
         }
         else
         {
-            if(this.state.asbNumber.length < 2)
+            if(this.state.asbNumber.length < 5)
             {
                 this.state.asbNumber = ""; 
             }
             var currentTime = new Timestamp();
             currentTime.setCurrentTime(); 
 
-            var addBlock = new Block(this.state.name, this.state.asbNumber, this.state.club, this.state.grade); 
+            var name = this.state.name; 
+            var asbNumber = this.state.asbNumber;
+            var club = this.state.club;
+            var grade = this.state.grade; 
+
+            var addBlock = new Block(name, asbNumber, club, grade); 
             addBlock.previousHash = this.state.attendanceRecord.getLatestBlock().hash;  
             addBlock.timestamp = currentTime; 
             addBlock.hash = addBlock.calculateHash(); 
@@ -91,7 +96,7 @@ export default class App extends Component {
 
             this.state.name = "";
             this.state.asbNumber = "";
-            this.state.grade = "select";
+            this.state.grade = "Not Selected";
         }
     }
 
@@ -119,7 +124,7 @@ export default class App extends Component {
         this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
 
         var dates =[]; 
-        this.state.exportDates = [<option key={1} value="select">Select A Date</option>]; 
+        this.state.exportDates = [<option key={1} value="Not Selected">Select A Date</option>]; 
 
         for(var i = 0; i < this.state.attendanceRecord.chain.length; i++)
         {
@@ -147,10 +152,10 @@ export default class App extends Component {
         
         this.firebaseHelper.updateBlockchain(this.state.attendanceRecord);
 
-        if(this.state.exportClub == "select"){
+        if(this.state.exportClub == "Not Selected"){
             alert("Please select a club");
         }
-        else if(this.state.exportDate == "select"){
+        else if(this.state.exportDate == "Not Selected"){
             alert("Please select an export date");
         }
         else{
@@ -194,7 +199,7 @@ export default class App extends Component {
 
                         <div class ="selectWrapper"> 
                             <select value={this.state.club} onChange={this.handleClubChange} class="select">
-                                <option value="select">Select a Club</option>
+                                <option value="Not Selected">Select a Club</option>
                                 <option value="astronomy">Astronomy Club</option>
                                 <option value="code">Code Club</option>
                                 <option value="creativewriting">Creative Writing Club</option>
@@ -223,7 +228,7 @@ export default class App extends Component {
 
                         <div class ="selectWrapper"> 
                             <select value={this.state.grade} onChange={this.handleGradeChange} class="select">
-                                <option value="select">Select a Grade</option>
+                                <option value="Not Selected">Select a Grade</option>
                                 <option value="Grade 9">9</option>
                                 <option value="Grade 10">10</option>
                                 <option value="Grade 11">11</option>
@@ -241,7 +246,7 @@ export default class App extends Component {
 
                         <div class ="selectWrapper"> 
                             <select value={this.state.exportClub} onChange={this.handleExportClubChange} class="select">
-                                <option value="select">Select a Club</option>
+                                <option value="Not Selected">Select a Club</option>
                                 <option value="astronomy">Astronomy Club</option>
                                 <option value="code">Code Club</option>
                                 <option value="creativewriting">Creative Writing Club</option>
