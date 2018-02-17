@@ -1,0 +1,79 @@
+html{
+	text-align:center;
+	font-family: "Nevis";
+	font-size: 2em;
+}
+#title{
+	text-align:left;
+}
+
+body{
+	min-width:600px;
+	min-height:250px;
+}
+
+input
+{
+	outline: none;
+    border: 0px solid #000000;
+    border-bottom-width: 5px;
+    background-color: transparent;
+	font-size: 1em;
+	font-family: "Nevis";
+	-webkit-transition: border-color 0.25s, box-shadow 0.25s; /* Safari */
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+input:hover, input:focus
+{
+   border-color: #FFD700;
+}
+.centerWrapper{
+	margin-top: 1em;
+	left: 0px;
+	width: 100%;
+	position:absolute;
+	top: 25%;
+	height: calc(75% - 1em);
+}
+.clubList{
+	position:relative;
+	top: 25px;
+	display:inline-block;
+	margin: 0 auto;
+	width:auto;
+	min-width:500px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 40%;
+	min-height: 50px;
+}
+.clubList div{
+	float:none;
+}
+
+.highlight{
+	color:purple;
+}
+
+select{
+	font-size: 1em;
+	font-family: "Nevis";
+}
+.fadeout{
+	position:relative;
+	top: -35px;
+	height:60px;
+	width:100%;
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1) 95%); /* Standard syntax (must be last) */
+	pointer-events:none;
+}
+
+.signInData{
+	display:none;
+}
+
+@font-face {
+	font-family: "Nevis";
+	src: url("../fonts/nevis.ttf");
+}

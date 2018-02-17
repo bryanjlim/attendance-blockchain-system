@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>IHS Attendance Blockchain System</title>
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/site.css">
+	</head>
+	<body>
+	 <div class="mainScreen">
+		<h1 id="title">IHS Attendance</h1>
+
+		<div class="centerWrapper">
+
+			<h1>Select Your Club</h1>
+			<input id="selectClub" placeholder="Search..." onkeydown=search() onkeyup="search()">
+			<br/>
+			<div class = "clubList">
+				<div value="astronomy">Astronomy Club</div>
+				<div value="code">Code Club</div>
+				<div value="creativewriting">Creative Writing Club</div>
+				<div value="french">French Club</div>
+				<div value="girlswhocode">Girls Who Code</div>
+				<div value="green">Green Team</div>
+				<div value="hiking">Hiking Club</div>				
+				<div value="japanese">Japanese Club</div>
+				<div value="JSA">Junior State of America</div>
+				<div value="NHS">National Honor Society</div>
+				<div value="robotics">Robotics Club</div>
+				<div value="starkillerbase">Starkiller Base</div>
+				<div value="test">Test Club (Beta Testing)</div>			
+			<br/>
+			</div>
+		<div class="fadeout"></div>
+			
+			<div class="signInData">
+				<div class="name">
+					<label class ="nameText">Full Name: </label>
+					<input type="text" class="nameForm"/>
+				</div>
+
+				<div class="name">
+					<label class ="nameText">ASB Number (dival): </label>
+					<input type="text" value={this.state.asbNumber} onChange={this.handleASBNumberChange} class="nameForm"/>
+				</div>
+
+				<div class ="selectWrapper"> 
+					<select value={this.state.grade} onChange={this.handleGradeChange} class="select">
+						<div value="Not Selected">Select a Grade</div>
+						<div value="Grade 9">9</div>
+						<div value="Grade 10">10</div>
+						<div value="Grade 11">11</div>
+						<div value="Grade 12">12</div>
+					</select>
+				</div>
+
+				<div class="signInButtonWrapper">
+					<button class="signInButton" onClick={this.signIn}>
+						Sign In
+					</button>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+		
+		<script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="javascript/site.js"></script>
+	</body>
+</html>
