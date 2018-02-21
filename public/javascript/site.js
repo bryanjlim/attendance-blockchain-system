@@ -118,3 +118,15 @@ jQuery.fn.highlight = function (words, options) {
     });
 };
 
+$(".clubList").scroll(function(){
+	var scrollNum = $(".clubList").scrollTop();
+	console.log(scrollNum);
+	$('.fadeout').css({bottom: -scrollNum - 2 +"px"});
+	$(".fadeout").redraw();
+});
+
+$.fn.redraw = function() {
+    return this.hide( 0, function() {
+        $( this ).show();
+    } );
+}

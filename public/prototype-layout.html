@@ -1,14 +1,34 @@
-<html>
+<!doctype html>
+<html lang="en">
 	<head>
-		<title>IHS Attendance Blockchain System</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/site.css">
+		<title>IHS Attendance Blockchain System</title>
 	</head>
-	<body>
-	 <div class="mainScreen">
-		<h1 id="title">IHS Attendance</h1>
-
-		<div class="centerWrapper">
+	<body class = "text-center">
+	<header>
+		<nav class="navbar navbar-expand-md navbar-light fixed-top">
+			<a class="navbar-brand" href="#">IHS Attendance</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+				<a class="nav-link" href="#">Sign In</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="#">Export Data</a>
+				</li>
+			</ul>
+			</div>
+		</nav>
+	</header>
+		
+	
+		<div class="centerWrapper mr-auto text-center">
 
 			<h1>Select Your Club</h1>
 			<input id="selectClub" placeholder="Search..." onkeydown=search() onkeyup="search()">
@@ -28,9 +48,9 @@
 				<div value="starkillerbase">Starkiller Base</div>
 				<div value="test">Test Club (Beta Testing)</div>			
 			<br/>
+			<span class="fadeout"></div>	
 			</div>
-		<div class="fadeout"></div>
-			
+				
 			<div class="signInData">
 				<div class="name">
 					<label class ="nameText">Full Name: </label>
@@ -61,12 +81,13 @@
 			
 		</div>
 		
-	</div>
-		
-		<script
+			<script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
   <script src="javascript/site.js"></script>
 	</body>
 </html>
