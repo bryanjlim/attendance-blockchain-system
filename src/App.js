@@ -94,6 +94,8 @@ export default class App extends Component {
             addBlock.timestamp = currentTime; 
             addBlock.hash = addBlock.calculateHash(); 
 
+            alert(currentTime.totalMilliseconds);
+
             this.firebaseHelper.addBlockToDatabase(addBlock);
             this.repopulateExportDates(this.state.exportClub);
 
@@ -110,7 +112,7 @@ export default class App extends Component {
 
         for(var i =0; i < this.state.attendanceRecord.chain.length; i++){
             if(this.state.attendanceRecord.chain[i].asbNumber == this.state.asbNumber 
-                && this.state.attendanceRecord.chain[i].timestamp == currentTime.toString()
+                && this.state.attendanceRecord.chain[i].timestamp == currentTime.getSimpleDate()
                 && this.state.attendanceRecord.chain[i].grade == this.state.grade
                 && this.state.attendanceRecord.chain[i].name == this.state.name
                 && this.state.attendanceRecord.chain[i].club == this.state.club)
@@ -135,9 +137,9 @@ export default class App extends Component {
 
             if(block.club == club)
             {
-                if(dates.length == 0 || block.timestamp != dates[dates.length-1])
+                if(dates.length == 0 || block.timestamp.getSimpleDate() != dates[dates.length-1])
                 {
-                    dates.push(block.timestamp.toString()); 
+                    dates.push(block.timestamp.getSimpleDate()); 
                 }
             }
         }
@@ -166,7 +168,7 @@ export default class App extends Component {
 			var rowNum = 1;
 			for(var i = 0; i < this.state.attendanceRecord.chain.length; i++){
 				var block = this.state.attendanceRecord.chain[i];
-				if(block.timestamp == this.state.exportDate && block.club == this.state.exportClub){
+				if(block.timestamp.getSimpleDate() == this.state.exportDate && block.club == this.state.exportClub){
 					rows[rowNum] = [block.grade, block.name, block.asbNumber];
 					rowNum++;
 				}

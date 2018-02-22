@@ -22,13 +22,18 @@ export default class FireBaseHelper
     updateBlockchain(blockchain){
         this.databaseRef.once("value", function(snapshot){
             var blocks = []; 
-            
+
             snapshot.forEach(function(data){
+
+                var hour = data.val().timestamp.hour == undefined ? 0 : data.val().timestamp.hour; 
+                var minutes = data.val().timestamp.minutes == undefined ? 0 : data.val().timestamp.minute; 
+                var totalMilliseconds = data.val().timestamp.totalMilliseconds == undefined ? 0 : data.val().timestamp.totalMilliseconds; 
+                
                 var block = new Block(data.val().name, 
                                       data.val().asbNumber, 
                                       data.val().club, 
                                       data.val().grade, 
-                                      new Timestamp(data.val().timestamp.day,data.val().timestamp.month,data.val().timestamp.year), 
+                                      new Timestamp(data.val().timestamp.day,data.val().timestamp.month,data.val().timestamp.year, hour, minutes, totalMilliseconds), 
                                       data.val().previousHash, 
                                       data.val().hash
                                     );
