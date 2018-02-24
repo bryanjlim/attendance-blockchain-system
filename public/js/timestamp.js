@@ -1,4 +1,4 @@
-export default class Timestamp
+class Timestamp
 {
     constructor(day, month, year, hour, minutes, totalMilliseconds)
     {
