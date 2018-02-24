@@ -1,6 +1,6 @@
 const SHA256 = require('crypto-js/sha256');
 
-export default class Block
+class Block
 {
     constructor(name, asbNumber, club, grade, timestamp, previousHash, hash)
     {

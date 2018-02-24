@@ -1,19 +1,23 @@
 {
   "name": "attendance-blockchain-system",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A web service for clubs and organizations at Issaquah High School to take attendance and export attendance data. It also happens to utlize a blockchain (that is not decentralized yet). <br />",
+  "main": "index.js",
   "dependencies": {
-    "bootstrap": "^4.0.0",
-    "crypto-js": "^3.1.9-1",
-    "firebase": "^4.9.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "crypto-js": "^3.1.9-1"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryanjlim/attendance-blockchain-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryanjlim/attendance-blockchain-system/issues"
+  },
+  "homepage": "https://github.com/bryanjlim/attendance-blockchain-system#readme"
 }

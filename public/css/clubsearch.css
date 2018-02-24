@@ -1,6 +1,3 @@
-.navbar{
-	background-color:white;
-}
 input
 {
 	outline: none;
@@ -17,10 +14,12 @@ input:hover, input:focus
 {
    border-color: #FFD700;
 }
+
 .centerWrapper{
 	margin-top: 15vh;
 	
 }
+
 .clubList{
 	position:relative;
 	top:3vh;
@@ -31,9 +30,15 @@ input:hover, input:focus
 	max-height:55vh;
 	height:0%;
 }
+
 .clubList div{
 	float:none;
 }
+
+.clubList div a{
+	cursor: pointer;
+}
+
 .select{
 	min-width:800px;
 }

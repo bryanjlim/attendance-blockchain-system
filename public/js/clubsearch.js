@@ -16,7 +16,7 @@ function search() {
     var input, filter, ul, li, a, i;
     input = document.getElementById('selectClub');
     filter = input.value.toUpperCase();
-    ul = document.getElementById("clubList");
+    ul = document.getElementsByClassName("clubList");
     li = $(".clubList div");
     // Loop through all list items, and hide those which don't match the search query
 
