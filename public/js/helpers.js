@@ -1,8 +1,4 @@
-import * as firebase from 'firebase';
-import Block from './Block';
-import Timestamp from './Timestamp';
-
-export default class FireBaseHelper
+class FireBaseHelper
 {
     constructor()
     {
@@ -46,5 +42,22 @@ export default class FireBaseHelper
     // Adds singular block to database
     addBlockToDatabase(block){
         this.databaseRef.push(block);
+    }
+}
+
+class GeolocationHelper
+{
+    constructor()
+    {
+        this.longitude = parseFloat(this.httpGet("https://ipapi.co/longitude/")); 
+        this.latitude = parseFloat(this.httpGet("https://ipapi.co/latitude/")); 
+    }
+
+    httpGet(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
     }
 }
