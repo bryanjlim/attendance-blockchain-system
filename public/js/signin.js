@@ -18,6 +18,13 @@ $('#entireClubSelection').on('click', '.clubLink', function(e)
     for(let i=0; i<clubList.length; i++){
         if(clubList[i].shortHandName == clubToSubmit)
         {   
+            // Sign in header
+            $(".entireSignInFields").prepend('<div class="py-5 text-center"><h2><u>'+clubList[i].clubName+' Sign In</u></h2></div>');
+
+            if(clubList[i].shortHandName == "robotics"){
+                $(".entireSignInFields").prepend('<center><img src="https://static1.squarespace.com/static/559dcc31e4b07b65f9721560/57d5f3c8e4fcb5c486bc6676/57d5f3c8e4fcb5c486bc6678/1473639369819/Our%2BLogo.jpg?format=500w"class="centerLogo"></img></center>')
+            }
+
             // Get fields to show from the club selected
             var fieldsToShow = clubList[i].chosenFields; 
             var paragraphInstructions = (clubList[i].paragraphInstruction != undefined) ? clubList[i].paragraphInstruction : "Paragraph"; 
