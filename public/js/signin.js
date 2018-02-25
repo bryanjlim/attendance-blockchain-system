@@ -71,6 +71,13 @@ $("#signinbutton").click(function(e){
     updateBlockchain();
     var shouldSubmit = true; 
 
+    if(Math.abs(latitude - 47.522533) > .06 ||  
+       Math.abs(longitude - -122.028751) > .06)
+    {
+        $("#geolocationerror").show(); 
+        shouldSubmit = false; 
+    }
+
     // If an element with id "name" exists
     if($('#name').length)
     {
