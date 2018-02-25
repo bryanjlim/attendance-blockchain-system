@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="css/clubsearch.css">
+		<link rel="stylesheet" type="text/css" href="css/exportfields.css">
+		<title>IHS Attendance Blockchain System</title>
+	</head>
+
+	<body>
+
+		<header>
+			<!-- Nav Bar -->
+			<nav class="navbar navbar-expand-md navbar-light fixed-top">
+				<a class="navbar-brand" href="index.html">IHS Attendance</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Sign In</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="export.html">Export Data</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">About ABS</a>
+					</li>
+				</ul>
+				</div>
+			</nav>
+		</header>
+		
+		<div id="entireClubSelection">
+			<div class="centerWrapper text-center mr-auto">
+				<h1 class="select-club-title">Select Club To Export</h1>
+				<input id="selectClub" placeholder="Search..." onkeydown=search() onkeyup="search()">
+				<br/>
+				<div class="clubList">
+						<!-- Items populated in clubsearch.js on ready -->
+					<br/>
+					<span class="fadeout"></span>	
+				</div>
+			</div>
+		</div>
+
+		<div class="entireExportFields container">
+
+			<!-- Export -->
+			<form id="exportForm" class="needs-validation" novalidate>
+				
+                <div class="mb-3">
+					<label for="sel1">Year</label>
+					<select class="form-control" id="year">
+                        <option value="none"></option>
+                    </select>
+                    <div class="invalid-feedback">
+							Please select a year.
+                    </div>
+                </div> 
+                
+				<div class="mb-3">
+					<label for="sel1">Month</label>
+					<select class="form-control" id="month">
+                        <option value="none"></option>
+                    </select>
+                    <div class="invalid-feedback">
+							Please select a month. 
+                    </div>
+                </div> 
+                
+                <div class="mb-3">
+					<label for="sel1">Day</label>
+					<select class="form-control" id="day">
+                        <option value="none"></option>
+                    </select>
+                    <div class="invalid-feedback">
+							Please select a day. 
+                    </div>
+                </div> 
+                
+				<hr class="mb-4 exportFieldLines">
+                <button class="btn btn-primary btn-lg btn-block" id="export" type="submit">Export Attendance Data On Selected Date</button>
+                
+                <hr class="mb-4 exportFieldLines">
+                <button class="btn btn-primary btn-lg btn-block" id="exportAll" type="submit">Export All Attendance Data</button>
+                
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Exporting....</strong> Please ensure you are using Google Chrome. The exported document may not be downloaded or contain data otherwise. 
+                </div>
+			</form>
+	
+		</div>
+
+		<!-- Scripts -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+		<script src="js/sha256.js"></script>
+		<script src="js/timestamp.js"></script>
+		<script src="js/helpers.js"></script>
+		<script src="js/blockchain.js"></script>
+		<script src="js/clubs.js"></script>
+		<script src="js/clubsearch.js"></script>
+		<script src="js/export.js"></script>
+	</body>
+</html>
