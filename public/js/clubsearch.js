@@ -4,7 +4,7 @@ $(document).ready(function()
     // Populate Club List
     for(let i=clubList.length - 1; i > 0; i--)
     {
-        var prependString = '<div><a class="clubLink" value="'+clubList[i].shortHandName+'">'+clubList[i].clubName+'</a></div>'; 
+        var prependString = '<div class="clubLink" shorthand="'+clubList[i].shortHandName+'">'+clubList[i].clubName+'</div>'; 
         $(".clubList").prepend(prependString); 
     }
 

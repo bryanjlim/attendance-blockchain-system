@@ -35,8 +35,8 @@ input:hover, input:focus
 	float:none;
 }
 
-.clubList div a{
-	cursor: pointer;
+.clubLink{
+	cursor: pointer; 
 }
 
 .select{

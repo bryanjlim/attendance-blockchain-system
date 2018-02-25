@@ -1,8 +1,6 @@
-const SHA256 = require('crypto-js/sha256');
-
 class Block
 {
-    constructor(name, asbNumber, club, grade, timestamp, previousHash, hash)
+    constructor(name, asbNumber, club, grade, timestamp, previousHash, hash, paragraph, boolean)
     {
         this.name = name; 
         this.asbNumber = asbNumber;
@@ -11,11 +9,13 @@ class Block
         this.timestamp = timestamp;
         this.previousHash = previousHash; 
         this.hash = hash; 
+        this.paragraph = paragraph;
+        this.boolean = boolean; 
     }
 
     calculateHash()
     {
-        return SHA256(this.name + this.asbnumber + this.club + this.grade).toString();
+        return Sha256.hash(this.name + this.asbNumber + this.club + this.grade).toString();
     }
 }
 

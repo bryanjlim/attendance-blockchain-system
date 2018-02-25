@@ -1,0 +1,10 @@
+.btn{
+    cursor: pointer;
+}
+
+.entireSignInFields
+{
+    margin-top:3em; 
+    display:none; 
+    font-family: "Nevis"; 
+}
