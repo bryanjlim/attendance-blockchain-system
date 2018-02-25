@@ -5,11 +5,11 @@ var fields = Object.freeze({
     ASBNUMBER: 3,
     EMAIL: 4, 
     BOOLEAN: 5, 
-    TEXTAREA: 6
+    PARAGRAPH: 6
 }); 
 
 class Club{
-    constructor(clubName, shortHandName, chosenFields, booleanInstruction, textareaInstruction)
+    constructor(clubName, shortHandName, chosenFields, booleanInstruction, paragraphInstruction)
     {
         this.clubName = clubName;
         this.shortHandName = shortHandName; 
@@ -19,7 +19,7 @@ class Club{
         this.booleanInstruction = booleanInstruction; 
 
         // Instructions for the text area field
-        this.textareaInstruction = textareaInstruction; 
+        this.paragraphInstruction = paragraphInstruction; 
     }
 }
 
@@ -37,5 +37,5 @@ var clubList = [
     new Club("National Honor Society","NHS", [fields.NAME, fields.GRADE]),
     new Club("Robotics Club","robotics", [fields.NAME, fields.GRADE]),
     new Club("Starkiller Base","starkillerbase", [fields.NAME, fields.GRADE]),
-    new Club("Test Club (Beta Testing)","test", [fields.NAME, fields.GRADE]),
+    new Club("Test Club (Beta Testing)","test", [fields.NAME, fields.ASBNUMBER, fields.EMAIL, fields.PARAGRAPH, fields.BOOLEAN, fields.GRADE], "Test Boolean Instruction", "Test Paragraph Instruction"),
 ]

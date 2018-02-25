@@ -31,7 +31,8 @@ function updateBlockchain()
                                         data.val().previousHash, 
                                         data.val().hash,
                                         data.val().paragraph,
-                                        data.val().boolean
+                                        data.val().boolean,
+                                        data.val().email
                                     );
 
                 if(!blockchainarray.includes(block))
