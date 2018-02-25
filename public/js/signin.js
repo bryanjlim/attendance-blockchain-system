@@ -177,11 +177,23 @@ $("#signinbutton").click(function(e){
             $("#g10").addClass("disabled"); 
             $("#g11").addClass("disabled"); 
             $("#g12").addClass("disabled"); 
+
+            $("#g10").removeClass("btn-primary"); 
+            $("#g10").addClass("btn-outline-primary"); 
+            $("#g11").removeClass("btn-primary"); 
+            $("#g11").addClass("btn-outline-primary"); 
+            $("#g12").removeClass("btn-primary"); 
+            $("#g12").addClass("btn-outline-primary"); 
+
+            $("#g9").removeClass("btn-outline-primary"); 
+            $("#g9").addClass("btn-primary"); 
             grade = 9; 
         } 
         else
         {
             $("#g9").addClass("disabled"); 
+            $("#g9").removeClass("btn-primary"); 
+            $("#g9").addClass("btn-outline-primary"); 
             grade = undefined; 
         }
     }); 
@@ -196,10 +208,22 @@ $("#signinbutton").click(function(e){
             $("#g10").removeClass("disabled"); 
             $("#g11").addClass("disabled"); 
             $("#g12").addClass("disabled"); 
+
+            $("#g9").removeClass("btn-primary"); 
+            $("#g9").addClass("btn-outline-primary"); 
+            $("#g11").removeClass("btn-primary"); 
+            $("#g11").addClass("btn-outline-primary"); 
+            $("#g12").removeClass("btn-primary"); 
+            $("#g12").addClass("btn-outline-primary"); 
+
+            $("#g10").removeClass("btn-outline-primary"); 
+            $("#g10").addClass("btn-primary"); 
             gradeToSubmit = 10; 
         } 
         else
         {
+            $("#g10").removeClass("btn-primary"); 
+            $("#g10").addClass("btn-outline-primary"); 
             $("#g10").addClass("disabled"); 
             gradeToSubmit = undefined; 
         }
@@ -215,10 +239,22 @@ $("#signinbutton").click(function(e){
             $("#g10").addClass("disabled"); 
             $("#g11").removeClass("disabled"); 
             $("#g12").addClass("disabled"); 
+
+            $("#g10").removeClass("btn-primary"); 
+            $("#g10").addClass("btn-outline-primary"); 
+            $("#g9").removeClass("btn-primary"); 
+            $("#g9").addClass("btn-outline-primary"); 
+            $("#g12").removeClass("btn-primary"); 
+            $("#g12").addClass("btn-outline-primary"); 
+
+            $("#g11").removeClass("btn-outline-primary"); 
+            $("#g11").addClass("btn-primary"); 
             gradeToSubmit = 11; 
         } 
         else
         {
+            $("#g11").removeClass("btn-primary"); 
+            $("#g11").addClass("btn-outline-primary"); 
             $("#g11").addClass("disabled"); 
             gradeToSubmit = undefined; 
         }
@@ -234,10 +270,22 @@ $("#signinbutton").click(function(e){
             $("#g10").addClass("disabled"); 
             $("#g11").addClass("disabled"); 
             $("#g12").removeClass("disabled"); 
+
+            $("#g12").removeClass("btn-primary"); 
+            $("#g12").addClass("btn-outline-primary"); 
+            $("#g11").removeClass("btn-primary"); 
+            $("#g11").addClass("btn-outline-primary"); 
+            $("#g12").removeClass("btn-primary"); 
+            $("#g12").addClass("btn-outline-primary"); 
+
+            $("#g12").removeClass("btn-outline-primary"); 
+            $("#g12").addClass("btn-primary"); 
             gradeToSubmit = 12; 
         } 
         else
         {
+            $("#g12").removeClass("btn-primary"); 
+            $("#g12").addClass("btn-outline-primary"); 
             $("#g12").addClass("disabled"); 
             gradeToSubmit = undefined; 
         }

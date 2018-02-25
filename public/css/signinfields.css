@@ -2,9 +2,12 @@
     cursor: pointer;
 }
 
-.entireSignInFields
-{
+.entireSignInFields{
     margin-top:3em; 
     display:none; 
     font-family: "Nevis"; 
+}
+
+#grade-buttons{
+    margin-right:1em;
 }
