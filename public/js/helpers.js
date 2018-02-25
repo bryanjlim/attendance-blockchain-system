@@ -48,7 +48,6 @@ function addBlockToDatabase(block){
     databaseRef.push(block);
 }
 
-
 // Geolocation
 var longitude = parseFloat(this.httpGet("https://ipapi.co/longitude/")); 
 var latitude = parseFloat(this.httpGet("https://ipapi.co/latitude/")); 

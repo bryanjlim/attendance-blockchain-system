@@ -39,14 +39,16 @@ class Blockchain
             const previousBlock = this.chain[i-1];
 
             if(currentBlock.hash !== currentBlock.calculateHash()){
-                return false; 
+                alert("Current Hash Mistmatch At Index" + i);
+                return;
             }
 
             if(currentBlock.previousHash !== previousBlock.calculateHash()){
-                return false; 
+                alert("Previous Hash Mistmatch At Index" + i);
+                return;
             }
-
-            return true;
         }
+        alert("Blockchain Valid");
+        return; 
     }
 }

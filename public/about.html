@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/navbar.css">
+		<link rel="stylesheet" type="text/css" href="css/about.css">
+		<title>IHS Attendance Blockchain System</title>
+	</head>
+
+	<body>
+
+		<header>
+			<!-- Nav Bar -->
+			<nav class="navbar navbar-expand-md navbar-light fixed-top">
+				<a class="navbar-brand" href="index.html">IHS Attendance</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Sign In</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="export.html">Export Data</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="about.html">About ABS</a>
+					</li>
+				</ul>
+				</div>
+			</nav>
+        </header>
+        
+        <div class="container">
+            <center><img class="logo" src="img/ABSLogo.png"></img></center>
+            <hr class="mb-4 lineBelow">
+
+            <h2 class="text-center"><b>A</b>ttendance <b>B</b>lockchain <b>S</b>ystem (V1.0)</h2>
+
+            <h3>What Is ABS?</h3>
+            <p>A standardized attendance system for Issaquah High School clubs. Seamless sign-in and exporting on the front-end is combined with a blockchain containing SHA-256 hashes for blocks and the power of the Google Cloud on the backend.</p>
+            
+            <h3>Why Use ABS?</h3>
+            <p>You won't have to waste another piece of paper or make another Google Form ever again. It's an ASB-approved mean of attendance-taking and storage. It has built-in geolocation protection alongside support from the Issaquah Robotics Society and IHS Code Club to fulfill your every need.</p>
+        
+            <h3>Tailored For You</h3>
+            <p>Each club has customizable sign-in fields. Just want names and grades? Easy! Want sign-ins ASB numbers, a paragraph input, a boolean input, and geolocation protection ontop of a required password? Also easy!</p>
+            
+            <h3>Securely Designed</h3>
+            <p>Using an immutable blockchain, attendance data can't be tampered with. Server-side data validation ensures current time, so you can't add sign-ins to past dates. By verifying the past and current hashes of blocks, we can ensure blockchain validity (nothing has been tampered with).</p>
+        
+            <i>Try it out (yes, this actually does something... you can check the code):</i>
+            <button class="btn btn-primary btn-lg btn-block" id="verify" type="submit">Check Blockchain Validity</button>
+
+            <hr class="mb-4">
+            
+            <h3><u>Automatic Responses</u></h3>
+            <strong class="Q">Input: ABS isn't working out for me.</strong>
+            <p>Our Output: We'd love to hear what isn't working. It'd be our pleasure to fix, improve, or add anything you have on mind. Contact us at <a href="mailto:ihs.abs@outlook.com">ihs.abs@outlook.com</a></p>
+            <strong class="Q">Input: I am not working out my abs.</strong>
+            <p>Our Output: You should take 7th period crossfit. Contact Mrs. Fortier at <a href="mailto:fortierb@issaquah.wednet.edu">fortierb@issaquah.wednet.edu</a></p>
+            <strong class="Q">Input: My club isn't on the list. I'd like it to be added</strong>
+            <p>Our Output: It'll take us less than 30 seconds to add! (You can time us.) Contact us at <a href="mailto:ihs.abs@outlook.com">ihs.abs@outlook.com</a> to get started. Or, talk to Bryan or Preston.</p>
+            <strong class="Q">Input: ABS can't be reliable. I'll just stick with Google.</strong>
+            <p>Our Output: We're using the Google Cloud to host our database and website. We backup data, and with the support of clubs like robotics and code club, we forsee this being maintained for a while. Oh, and it doesn't cost us a cent to host thanks to Firebase.</p>
+            
+            <hr class="mb-4">
+
+            <h3><u>What's Next</u></h3>
+            <p>After a successful beta and then release, we're hard at work on version 1.1 (<i>Project <b>Lim</b>elight</i>)</p>
+            <p>Features that will be added:</p>
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Leaderboard</h5>
+                    <small class="text-muted">Attendance of specific people</small>
+                    </div>
+                    <p class="mb-1">In the export section of each club, see a leaderboard of people and them meetings they've attended. Expand to see which specific meetings they attended.</p>
+                </div>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Data Insights</h5>
+                    <small class="text-muted">Demographic information</small>
+                    </div>
+                    <p class="mb-1">In the export section of each club, see automatic demographic breakdowns (gender, grade, and ethnicity) based on the attendance data of that club in the form of graphs.</p>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <h3><u>Credits</u></h3>
+            <img class="bryanandpreston" src="img/BryanAndPreston.jpg"></img>
+            <p>ABS was ideated by <b>Bryan Lim</b> (right) and co-created by him and <b>Preston lee</b> (left). The two currently maintain it.</p>
+            <p>Logo by Mason Maron. We'd like to thank the Issaquah Robotics Society for its support of ABS.</p>
+            <p style="margin-bottom:5em">A special thank you to all the (very smart) clubs who are using ABS and plan to continue using it.</p>
+            
+        </div>
+        
+		
+
+		<!-- Scripts -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+		<script src="js/sha256.js"></script>
+		<script src="js/timestamp.js"></script>
+		<script src="js/helpers.js"></script>
+        <script src="js/blockchain.js"></script>
+        <script src="js/about.js"></script>
+	</body>
+</html>
