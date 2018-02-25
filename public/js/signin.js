@@ -47,7 +47,7 @@ $('#entireClubSelection').on('click', '.clubLink', function(e)
                     break; 
 
                     case fields.GRADE:
-                    $("#signInForm").prepend('<div class="mb-3"><label for="grade">Grade</label><nav class="grade-buttons form-control" id="grade-buttons"><button class="btn btn-outline-primary disabled" id="g9" href="#">Grade 9</button><button class="btn btn-outline-primary disabled" id="g10" href="#">Grade 10</button><button class="btn btn-outline-primary disabled" id="g11" href="#">Grade 11</button><button class="btn btn-outline-primary disabled" id="g12" href="#">Grade 12</button></nav><div class="invalid-feedback">Please select your grade. </div></div>')
+                    $("#signInForm").prepend('<div class="mb-3"><label for="grade">Grade</label><nav class="grade-buttons form-control" id="grade-buttons"><button type="button" class="btn btn-outline-primary disabled" id="g9" href="#">Grade 9</button><button type="button" class="btn btn-outline-primary disabled" id="g10" href="#">Grade 10</button><button type="button" class="btn btn-outline-primary disabled" id="g11" href="#">Grade 11</button><button type="button" class="btn btn-outline-primary disabled" id="g12" href="#">Grade 12</button></nav><div class="invalid-feedback">Please select your grade. </div></div>')
                     break; 
                 }
             }
@@ -167,7 +167,8 @@ $("#signinbutton").click(function(e){
 
 // Grade button click handling
 
-    $("#g9").click(function(e) {
+    $('.entireSignInFields').on('click', '#g9', function(e)
+    {
         e.preventDefault(); 
 
         if($("#g9").hasClass("disabled"))
@@ -185,7 +186,8 @@ $("#signinbutton").click(function(e){
         }
     }); 
 
-    $("#g10").click(function(e) {
+    $('.entireSignInFields').on('click', '#g10', function(e)
+    {
         e.preventDefault(); 
 
         if($("#g10").hasClass("disabled"))
@@ -203,7 +205,8 @@ $("#signinbutton").click(function(e){
         }
     }); 
 
-    $("#g11").click(function(e) {
+    $('.entireSignInFields').on('click', '#g11', function(e)
+    {
         e.preventDefault(); 
 
         if($("#g11").hasClass("disabled"))
@@ -221,7 +224,8 @@ $("#signinbutton").click(function(e){
         }
     }); 
 
-    $("#g12").click(function(e) {
+    $('.entireSignInFields').on('click', '#g12', function(e)
+    {
         e.preventDefault(); 
 
         if($("#g12").hasClass("disabled"))
