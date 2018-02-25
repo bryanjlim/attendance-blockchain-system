@@ -15,7 +15,8 @@ $('#entireClubSelection').on('click', '.clubLink', function(e)
 {
     // Generate sign in fields from selected club
     clubToSubmit = $(e.target).attr('shorthand');
-    for(let i=0; i<clubList.length; i++){
+    for(let i=0; i<clubList.length; i++)
+    {
         if(clubList[i].shortHandName == clubToSubmit)
         {   
             // Sign in header

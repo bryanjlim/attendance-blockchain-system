@@ -1,0 +1,18 @@
+.btn{
+    cursor: pointer;
+}
+
+.entireExportFields{
+    margin-top:3em; 
+    display:none; 
+    font-family: "Nevis"; 
+}
+
+.exportFieldLines{
+    margin-top:3em; 
+}
+
+.alert{
+    display:none; 
+    margin-top:3em; 
+}
