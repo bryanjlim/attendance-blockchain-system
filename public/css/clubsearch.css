@@ -1,5 +1,6 @@
 input
 {
+	width:13.18em;
 	outline: none;
     border: 0px solid #000000;
     border-bottom-width: 5px;
@@ -20,6 +21,10 @@ input:hover, input:focus
 	
 }
 
+.select-club-title{
+	margin-bottom:.5em; 
+}
+
 .clubList{
 	position:relative;
 	top:3vh;
@@ -36,6 +41,9 @@ input:hover, input:focus
 }
 
 .clubLink{
+	margin-left:auto;
+	margin-right:auto; 
+	max-width:15em; 
 	cursor: pointer; 
 }
 
@@ -65,4 +73,10 @@ input:hover, input:focus
 @font-face {
 	font-family: "Nevis";
 	src: url("../fonts/nevis.ttf");
+}
+
+.mb-4{
+	max-height:0em; 
+	margin-top:.4em;
+	padding:0em; 
 }
