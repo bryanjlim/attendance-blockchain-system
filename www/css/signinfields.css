@@ -14,7 +14,7 @@
 
 .centerLogo{
     margin-top:3em;
-    max-width:20em; 
+    max-width:15em; 
 }
 
 #geolocationerror
@@ -22,4 +22,9 @@
     margin-top:1em; 
     margin-bottom:3em; 
     display:none; 
+}
+
+#signinbutton
+{
+    margin-bottom:5em; 
 }
