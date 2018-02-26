@@ -36,8 +36,25 @@ input:hover, input:focus
 	height:0%;
 }
 
-.clubList div{
+.clubLink{
 	float:none;
+}
+
+.wrapInner{
+	opacity: 0;
+	transition: opacity 0.15s;
+	z-index: -100;
+	width: 100%;
+	left:0;
+	display:inline-flex;
+	display:-webkit-inline-flex; /* Safari */
+	height: 36px;
+	position:absolute;
+	background-image: linear-gradient(to right, rgba(255,255,255,0) 10%, #d633ff 40%,#d633ff 60%, rgba(255,255,255,0) 90%);
+}
+
+.clubLink:hover .wrapInner{
+	opacity:1;
 }
 
 .clubLink{

@@ -8,15 +8,77 @@ var paragraphToSubmit="";
 var booleanToSubmit=""; 
 var timestampToSubmit="";
 var previousHashToSubmit=""; 
-var hashToSubmit=""; 
+var hashToSubmit="";
+ 
+// Bind hashchange to onHashChange function
+$(window).on('hashchange', onHashChange);
+
+// Check hash on startup
+onHashChange(); 
+
+// Override hashchange function (When this code makes a hashchange)
+var override = false;
+
+ function onHashChange(){
+// Load correct page
+	if(!override){
+		if(window.location.hash == ""){
+			if($('#entireClubSelection:visible').length < 1){ // On club sign in page, but no hash
+				window.location.reload(); // Reload page to get back to entire club selection
+			}
+		} else {	
+			$("#entireClubSelection").hide();	
+			generateClubFields(window.location.hash.replace("#", ""));		
+			$(".entireSignInFields").show(); 
+		}
+	} else {
+		// Reset override (use once)
+		override = false;
+	}
+}
 
 // On club selection from list
 $('#entireClubSelection').on('click', '.clubLink', function(e)
 {
-    // Generate sign in fields from selected club
-    clubToSubmit = $(e.target).attr('shorthand');
-    for(let i=0; i<clubList.length; i++)
-    {
+	// Get shorthand name of selected club
+	clubToSubmit = $(e.target).attr('shorthand');
+	selectClub(clubToSubmit);
+});
+
+$('#selectClubForm').submit(function(e){
+	e.preventDefault();
+	selectClub(search());
+	return false;
+});
+
+// Only allow one club to be selected from the list
+var selected = false;
+
+// Select club and animate selection
+function selectClub(clubToSubmit){
+	if(!selected) {			
+		// Make sure club is only selected once.
+		selected = true;
+		
+		// Code is making hashchange. Override hashchange function.
+		override = true;
+		
+		// Set hash to club shorthand
+		window.location.hash = clubToSubmit;
+		
+		// Generate selection fields for selected club
+		generateClubFields(clubToSubmit);
+		
+		// Animate selection
+		$("#entireClubSelection").hide(250); 
+		$(".entireSignInFields").show(250); 
+	}
+}
+
+// Generate selection fields for selected club
+function generateClubFields(clubToSubmit){
+	for(let i=0; i<clubList.length; i++)
+	{
         if(clubList[i].shortHandName == clubToSubmit)
         {   
             // Sign in header
@@ -59,12 +121,12 @@ $('#entireClubSelection').on('click', '.clubLink', function(e)
                     break; 
                 }
             }
-        }
+			// This is for efficiency. Don't check rest of clubs if this club is the one searched for.
+			break;
+		}
     }
 
-    $("#entireClubSelection").hide(250); 
-    $(".entireSignInFields").show(250); 
-});
+}
 
 // On Sign In
 $("#signinbutton").click(function(e){

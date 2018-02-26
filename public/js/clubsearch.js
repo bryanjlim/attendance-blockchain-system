@@ -15,7 +15,9 @@ $(document).ready(function()
 		return a.textContent.localeCompare(b.textContent);
 	});
     li.detach().prependTo($(".clubList"));
-
+	
+	// Add purple highlight on hover
+	$('.clubList div').prepend("<div class='wrapInner'></div>");
 	// Select text box on start of page
 	$("#selectClub").focus().select();
 });
@@ -24,17 +26,15 @@ $(document).ready(function()
 // Search Method 
 var removedLast = 0;
 var lastVFilter = "";
-
-function search() 
-{
+function search() {
     // Declare variables
     var input, filter, ul, li, a, i;
     input = document.getElementById('selectClub');
     filter = input.value.toUpperCase();
-    ul = document.getElementsByClassName("clubList");
-    li = $(".clubList div");
-
+    ul = document.getElementById("clubList");
+    li = $(".clubList div").not(".wrapInner");
     // Loop through all list items, and hide those which don't match the search query
+
 	var remove = [];
     for (i = 0; i < li.length; i++) {
         a = li.get(i);
@@ -45,26 +45,21 @@ function search()
 			remove.push(li.get(i));			
         }
     }
-    if(remove.length <li.length)
-    {	
+	if(remove.length <li.length){	
 		lastVFilter = filter;	
-        if(removedLast != remove.length)
-        {
-            if(li.length - remove.length > 0)
-            {
-                for(i = 0; i < remove.length; i++)
-                {
+		if(removedLast != remove.length){
+			if(li.length - remove.length > 0){
+				for(i = 0; i < remove.length; i++){
 					remove[i].style.display = "none";
 				}
 			}		
-            li.sort(function(a,b)
-            {
+			li.sort(function(a,b){
 				var aIndex = a.textContent.toUpperCase().indexOf(filter);
 				var bIndex = b.textContent.toUpperCase().indexOf(filter);
-                if(aIndex == bIndex)
-                {
+				if(aIndex == bIndex){
 					return a.textContent.localeCompare(b.textContent);
 				}
+
 				return aIndex > bIndex ? 1 : -1;
 			});
 		}
@@ -73,6 +68,10 @@ function search()
 	li.highlight(lastVFilter);
 	li.detach().prependTo($(".clubList"));
 	removedLast = remove.length;
+	return li.filter(function(i){
+		return $(this).css("display").toLowerCase() != "none";
+	}).first().attr("shorthand");
+	
 }
 
 
