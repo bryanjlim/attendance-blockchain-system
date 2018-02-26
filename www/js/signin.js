@@ -101,7 +101,7 @@ function generateClubFields(clubToSubmit){
                     break; 
 
                     case fields.ASBNUMBER:
-                    $("#signInForm").prepend('<div class="mb-3"><label for="name">ASB Number</label><input type="text" class="form-control" id="asbNumber" placeholder="" required><div class="invalid-feedback">Please enter a valid ASB number. </div></div>'); 
+                    $("#signInForm").prepend('<div class="mb-3"><label for="asbnumber">ASB Number</label><input type="text" class="form-control" id="asbNumber" placeholder="" required><div class="invalid-feedback">Please enter a valid ASB number. </div></div>'); 
                     break; 
 
                     case fields.PARAGRAPH:
