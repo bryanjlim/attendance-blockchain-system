@@ -101,7 +101,7 @@ function generateClubFields(clubToSubmit){
                     break; 
 
                     case fields.ASBNUMBER:
-                    $("#signInForm").prepend('<div class="mb-3"><label for="name">ASB Number</label><input type="text" class="form-control" id="asbNumber" placeholder="" required><div class="invalid-feedback">Please enter a valid ASB number. </div></div>'); 
+                    $("#signInForm").prepend('<div class="mb-3"><label for="asbnumber">ASB Number</label><input type="text" class="form-control" id="asbNumber" placeholder="" required><div class="invalid-feedback">Please enter a valid ASB number. </div></div>'); 
                     break; 
 
                     case fields.PARAGRAPH:
@@ -240,6 +240,24 @@ $("#signinbutton").click(function(e){
     {
         // Always has value as selection element
         $("#boolean").addClass("is-valid");
+    }
+
+    // Get current timestamp
+    timestampToSubmit = new Timestamp(); 
+    timestampToSubmit.setCurrentTime(); 
+
+
+    // Check to see if person already signed in that day
+    for(let i=0; i<blockchainarray.length; i++)
+    {
+        if(nameToSubmit == blockchainarray[i].name &&
+            clubToSubmit == blockchainarray[i].club && 
+            timestampToSubmit.getSimpleDate() == blockchainarray[i].timestamp.getSimpleDate() &&
+            gradeToSubmit == blockchainarray[i].grade)
+            {
+                $("#duplicateerror").show(); 
+                shouldSubmit = false; 
+            }
     }
 
     if(!shouldSubmit)
