@@ -133,12 +133,12 @@ $("#signinbutton").click(function(e){
     updateBlockchain();
     var shouldSubmit = true; 
 
-    if(Math.abs(latitude - 47.522533) > .06 ||  
-       Math.abs(longitude - -122.028751) > .06)
-    {
-        $("#geolocationerror").show(); 
-        shouldSubmit = false; 
-    }
+    // if(Math.abs(latitude - 47.522533) > .06 ||  
+    //    Math.abs(longitude - -122.028751) > .06)
+    // {
+    //     $("#geolocationerror").show(); 
+    //     shouldSubmit = false; 
+    // }
 
     // If an element with id "name" exists
     if($('#name').length)
@@ -253,6 +253,38 @@ $("#signinbutton").click(function(e){
 
         addBlockToDatabase(blockToSubmit);
         $("#signInForm")[0].reset(); 
+
+        $("#signInForm>div>input.is-valid").removeClass("is-valid");
+        $("#signInForm>div>select.is-valid").removeClass("is-valid");
+        $("#signInForm>div>textarea.is-valid").removeClass("is-valid");
+        $("#signInForm>div>nav.is-valid").removeClass("is-valid");
+
+        $("#g9").removeClass("btn-primary"); 
+        $("#g10").removeClass("btn-primary"); 
+        $("#g11").removeClass("btn-primary"); 
+        $("#g12").removeClass("btn-primary"); 
+
+        $("#g9").addClass("btn-outline-primary"); 
+        $("#g10").addClass("btn-outline-primary"); 
+        $("#g11").addClass("btn-outline-primary"); 
+        $("#g12").addClass("btn-outline-primary"); 
+
+        $("#g9").addClass("disabled"); 
+        $("#g10").addClass("disabled"); 
+        $("#g11").addClass("disabled"); 
+        $("#g12").addClass("disabled"); 
+
+        nameToSubmit=""; 
+        emailToSubmit=""; 
+        asbNumberToSubmit=""; 
+        gradeToSubmit=""; 
+        paragraphToSubmit="";
+        booleanToSubmit=""; 
+        timestampToSubmit="";
+        previousHashToSubmit=""; 
+        hashToSubmit="";
+
+        $("#signInForm").prepend('<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sign In Success!</strong> Have a good one, '+nameToSubmit+' </div>');
     }
 
 }); 
