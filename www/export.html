@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
+	<head> 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="shortcut icon" href="favicon.ico">
@@ -89,7 +89,13 @@
                 <button class="btn btn-primary btn-lg btn-block" id="export" type="submit">Export Selected Date</button>
                 
                 <hr class="mb-4 exportFieldLines">
-                <button class="btn btn-primary btn-lg btn-block" id="exportAll" type="submit">Export All</button>
+				<button class="btn btn-primary btn-lg btn-block" id="exportAll" type="submit">Export All</button>
+				
+				<h1>Insights</h1>
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" id="gender" type="submit">Generate Gender Insights</button>
+				
+				<div id="genderChart" style="height: 370px; width: 100%;">
                 
                 <div class="alert alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -104,6 +110,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+		<script type="text/javascript" src="https://gender-api.com/js/jquery/gender.min.js"></script> 
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 		<script src="js/sha256.js"></script>
 		<script src="js/timestamp.js"></script>
 		<script src="js/helpers.js"></script>

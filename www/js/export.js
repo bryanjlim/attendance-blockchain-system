@@ -180,3 +180,83 @@ $("#exportAll").click(function(e){
 
     $("#exportForm")[0].reset(); 
 }); 
+
+$("#gender").click(function(e){
+    e.preventDefault(); 
+
+    for(let i=0; i<clubList.length; i++){
+        if(clubList[i].shortHandName == clubToExport)
+        {  
+            properClubName = clubList[i].clubName;
+        }
+    }
+
+    var names = []; 
+    var males = 0; 
+    var females = 0; 
+
+    for(let i = 0; i < blockchainarray.length; i++)
+    {
+        var block = blockchainarray[i];
+        if(block.club == clubToExport)
+        {
+            if(!(names.includes(block.name)))
+            {
+                names.push(block.name);
+            }
+        }
+    }
+
+    for(let i = 0; i < names.length; i++)
+    {
+        var stringsInName = names[i].split(" "); 
+
+        if(getGenderFromName(stringsInName[0]) == "male")
+        {
+            males++; 
+        } 
+        else if(getGenderFromName(stringsInName[0]) == "female")
+        {
+            females++; 
+        }
+    }
+
+    var totalCount = males + females; 
+
+    var chart = new CanvasJS.Chart("genderChart", {
+        theme: "light2",
+        animationEnabled: true,
+        title: {
+            text: "Gender Distribution"
+        },
+        subtitles: [{
+            text: properClubName,
+            fontSize: 16
+        }],
+        data: [{
+            type: "pie",
+            indexLabelFontSize: 18,
+            radius: 80,
+            indexLabel: "{label} - {y}",
+            yValueFormatString: "###0.0\"%\"",
+            click: explodePie,
+            dataPoints: [
+                { y: (males/totalCount*100), label: "Males" },
+                { y: (females/totalCount*100), label: "Females"},
+            ]
+        }]
+    });
+    chart.render();
+
+    $("#genderChart").show(); 
+
+});
+
+
+
+function explodePie(e) {
+	for(var i = 0; i < e.dataSeries.dataPoints.length; i++) {
+		if(i !== e.dataPointIndex)
+			e.dataSeries.dataPoints[i].exploded = false;
+	}
+}

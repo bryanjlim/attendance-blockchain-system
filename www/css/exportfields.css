@@ -20,3 +20,11 @@
 #exportAll{
     margin-bottom:3em; 
 }
+
+#genderChart{
+    margin-top:2em;
+    margin-bottom:3em; 
+    margin-left:auto;
+    margin-right:auto; 
+    display:none; 
+}
