@@ -21,7 +21,6 @@ onHashChange();
 var override = false;
 
  function onHashChange(){
-	 console.log(signInFieldDefault);
 // Load correct page
 	if(!override){
 		if(window.location.hash == ""){
@@ -44,9 +43,7 @@ var override = false;
 // On club selection from list
 $('#entireClubSelection').on('click', '.clubLink', function(e)
 {
-	// Get shorthand name of selected club
-	clubToSubmit = $(e.target).attr('shorthand');
-	selectClub(clubToSubmit);
+	selectClub($(this).attr('shorthand'));
 });
 
 $('#selectClubForm').submit(function(e){
@@ -59,8 +56,10 @@ $('#selectClubForm').submit(function(e){
 var selected = false;
 
 // Select club and animate selection
-function selectClub(clubToSubmit){
+function selectClub(club){
 	if(!selected) {			
+		clubToSubmit = club;
+
 		// Make sure club is only selected once.
 		selected = true;
 		
