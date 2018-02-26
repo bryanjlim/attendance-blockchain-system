@@ -48,7 +48,7 @@ class Blockchain
                 return;
             }
         }
-        alert("Blockchain Valid");
+        alert("Success! The Blockchain is Valid.");
         return; 
     }
 }
