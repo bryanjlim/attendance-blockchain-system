@@ -145,9 +145,9 @@ function cookieFill(){
 	$('#email').val(savedEmail);
 	gradeToSubmit = savedGrade;
 
-	$("#g" + grade).removeClass("disabled"); 
-	$("#g" + grade).removeClass("btn-outline-primary"); 
-	$("#g" + grade).addClass("btn-primary"); 
+	$("#g" + gradeToSubmit).removeClass("disabled"); 
+	$("#g" + gradeToSubmit).removeClass("btn-outline-primary"); 
+	$("#g" + gradeToSubmit).addClass("btn-primary"); 
 }
 
 // On Sign In
