@@ -40,7 +40,9 @@
 		<div id="entireClubSelection">
 			<div class="centerWrapper text-center mr-auto">
 				<h1 class="select-club-title">Select Club To Export</h1>
-				<input id="selectClub" placeholder="Search..." onkeydown=search() onkeyup="search()">
+				<input id="selectClub" placeholder="Search..." onkeydown=search() onkeyup="search()" autocomplete="off">
+				<!-- Use hidden submit field to allow mobile users to select enter key on mobile keyboard -->
+				<input type="submit" style="visibility:hidden;position:absolute"/>
 				<br/>
 				<div class="clubList">
 						<!-- Items populated in clubsearch.js on ready -->

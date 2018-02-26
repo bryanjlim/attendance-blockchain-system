@@ -9,7 +9,8 @@ var booleanToSubmit="";
 var timestampToSubmit="";
 var previousHashToSubmit=""; 
 var hashToSubmit="";
- 
+
+var signInFieldDefault = $(".entireSignInFields").clone().html();
 // Bind hashchange to onHashChange function
 $(window).on('hashchange', onHashChange);
 
@@ -28,6 +29,8 @@ var override = false;
 			}
 		} else {	
 			$("#entireClubSelection").hide();	
+			$(".entireSignInFields").empty();
+			$(".entireSignInFields").html(signInFieldDefault);
 			generateClubFields(window.location.hash.replace("#", ""));		
 			$(".entireSignInFields").show(); 
 		}
@@ -40,9 +43,7 @@ var override = false;
 // On club selection from list
 $('#entireClubSelection').on('click', '.clubLink', function(e)
 {
-	// Get shorthand name of selected club
-	clubToSubmit = $(e.target).attr('shorthand');
-	selectClub(clubToSubmit);
+	selectClub($(this).attr('shorthand'));
 });
 
 $('#selectClubForm').submit(function(e){
@@ -55,8 +56,10 @@ $('#selectClubForm').submit(function(e){
 var selected = false;
 
 // Select club and animate selection
-function selectClub(clubToSubmit){
+function selectClub(club){
 	if(!selected) {			
+		clubToSubmit = club;
+
 		// Make sure club is only selected once.
 		selected = true;
 		
@@ -452,12 +455,12 @@ $("#signinbutton").click(function(e){
             $("#g11").addClass("disabled"); 
             $("#g12").removeClass("disabled"); 
 
-            $("#g12").removeClass("btn-primary"); 
-            $("#g12").addClass("btn-outline-primary"); 
+            $("#g9").removeClass("btn-primary"); 
+            $("#g9").addClass("btn-outline-primary"); 
+            $("#g10").removeClass("btn-primary"); 
+            $("#g10").addClass("btn-outline-primary"); 
             $("#g11").removeClass("btn-primary"); 
             $("#g11").addClass("btn-outline-primary"); 
-            $("#g12").removeClass("btn-primary"); 
-            $("#g12").addClass("btn-outline-primary"); 
 
             $("#g12").removeClass("btn-outline-primary"); 
             $("#g12").addClass("btn-primary"); 
