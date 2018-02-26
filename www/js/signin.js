@@ -224,6 +224,23 @@ $("#signinbutton").click(function(e){
     
     // If an element with id "grade-buttons" exists
     if($('#grade-buttons').length){
+        if($('#g9').hasClass("btn-primary"))
+        {
+            gradeToSubmit = 9;
+        } 
+        else if($('#g10').hasClass("btn-primary"))
+        {
+            gradeToSubmit = 10;
+        } 
+        else if($('#g11').hasClass("btn-primary"))
+        {
+            gradeToSubmit = 11;
+        } 
+        else if($('#g12').hasClass("btn-primary"))
+        {
+            gradeToSubmit = 12;
+        } 
+
         if(gradeToSubmit == 9 || gradeToSubmit == 10 || gradeToSubmit == 11 || gradeToSubmit == 12)
         {
             $("#grade-buttons").addClass("is-valid");
