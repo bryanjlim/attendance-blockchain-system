@@ -121,11 +121,33 @@ function generateClubFields(clubToSubmit){
                     break; 
                 }
             }
+			
+			cookieFill();
 			// This is for efficiency. Don't check rest of clubs if this club is the one searched for.
 			break;
 		}
     }
 
+}
+
+function cookieFill(){
+	var savedName = getCookie(fields.NAME);
+	var savedASB = getCookie(fields.ASBNUMBER);
+	var savedEmail = getCookie(fields.EMAIL);
+	var savedGrade = getCookie(fields.GRADE);
+	
+	if(savedName.length > 0 || savedASB.length > 0 || savedEmail.length > 0 || savedGrade.length > 0){
+		$("#remember").prop('checked', true);
+	}
+	
+	$('#name').val(savedName);
+	$('#asbNumber').val(savedASB);
+	$('#email').val(savedEmail);
+	gradeToSubmit = savedGrade;
+
+	$("#g" + gradeToSubmit).removeClass("disabled"); 
+	$("#g" + gradeToSubmit).removeClass("btn-outline-primary"); 
+	$("#g" + gradeToSubmit).addClass("btn-primary"); 
 }
 
 // On Sign In
@@ -245,7 +267,24 @@ $("#signinbutton").click(function(e){
     }
     else // Should submit
     {
-        
+		// If remember me is checked
+		if($("#remember").is(':checked')){
+			setCookie(fields.NAME, nameToSubmit, 30);
+			setCookie(fields.ASBNUMBER, asbNumberToSubmit, 30);
+			setCookie(fields.EMAIL, emailToSubmit, 30);
+			setCookie(fields.GRADE, gradeToSubmit, 30);
+			console.log("Remembered " + document.cookie);
+		} else {
+			deleteCookie(fields.NAME);
+			deleteCookie(fields.ASBNUMBER);
+			deleteCookie(fields.EMAIL);
+			deleteCookie(fields.GRADE);
+			console.log("Deleting cookies");
+		}
+		
+        timestampToSubmit = new Timestamp(); 
+        timestampToSubmit.setCurrentTime(); 
+
         previousHashToSubmit = blockchainarray[blockchainarray.length - 1].hash; 
 
         var blockToSubmit = new Block(nameToSubmit,asbNumberToSubmit,clubToSubmit,gradeToSubmit,timestampToSubmit,previousHashToSubmit,hashToSubmit, paragraphToSubmit, booleanToSubmit, emailToSubmit); 
@@ -312,14 +351,14 @@ $("#signinbutton").click(function(e){
 
             $("#g9").removeClass("btn-outline-primary"); 
             $("#g9").addClass("btn-primary"); 
-            grade = 9; 
+            gradeToSubmit = 9; 
         } 
         else
         {
             $("#g9").addClass("disabled"); 
             $("#g9").removeClass("btn-primary"); 
             $("#g9").addClass("btn-outline-primary"); 
-            grade = undefined; 
+            gradeToSubmit = undefined; 
         }
     }); 
 
@@ -415,3 +454,31 @@ $("#signinbutton").click(function(e){
             gradeToSubmit = undefined; 
         }
     }); 
+	
+// Store cookies
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function deleteCookie(cname){
+	document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
