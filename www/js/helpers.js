@@ -68,21 +68,27 @@ function getGenderFromName(name)
     if(result != null)
     {
         var splitResult = result.split(","); 
-        var genderString = splitResult[1]; 
-        var genderSplit = genderString.split(":");
-        if (genderSplit[1] == '"male"')
+        if(splitResult[1] != null)
         {
-            return "male"; 
-        } 
-        else if (genderSplit[1] == '"female"')
-        {
-            return "female"; 
+            var genderString = splitResult[1]; 
+            var genderSplit = genderString.split(":");
+            if (genderSplit[1] == '"male"')
+            {
+                return "male"; 
+            } 
+            else if (genderSplit[1] == '"female"')
+            {
+                return "female"; 
+            }
+            else
+            {
+                return null; 
+            }
         }
         else
         {
             return null; 
         }
     }    
-
     return null; 
 }
