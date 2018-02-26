@@ -65,19 +65,24 @@ function getGenderFromName(name)
 {
     var result = httpGet("https://api.genderize.io/?name="+name);
 
-    var splitResult = result.split(","); 
-    var genderString = splitResult[1]; 
-    var genderSplit = genderString.split(":");
-    if (genderSplit[1] == '"male"')
+    if(result != null)
     {
-        return "male"; 
-    } 
-    else if (genderSplit[1] == '"female"')
-    {
-        return "female"; 
-    }
-    else
-    {
-        return null; 
+        var splitResult = result.split(","); 
+        var genderString = splitResult[1]; 
+        var genderSplit = genderString.split(":");
+        if (genderSplit[1] == '"male"')
+        {
+            return "male"; 
+        } 
+        else if (genderSplit[1] == '"female"')
+        {
+            return "female"; 
+        }
+        else
+        {
+            return null; 
+        }
     }    
+
+    return null; 
 }
