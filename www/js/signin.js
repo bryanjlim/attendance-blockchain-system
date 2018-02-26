@@ -220,6 +220,24 @@ $("#signinbutton").click(function(e){
         $("#boolean").addClass("is-valid");
     }
 
+    // Get current timestamp
+    timestampToSubmit = new Timestamp(); 
+    timestampToSubmit.setCurrentTime(); 
+
+
+    // Check to see if person already signed in that day
+    for(let i=0; i<blockchainarray.length; i++)
+    {
+        if(nameToSubmit == blockchainarray[i].name &&
+            clubToSubmit == blockchainarray[i].club && 
+            timestampToSubmit.getSimpleDate() == blockchainarray[i].timestamp.getSimpleDate() &&
+            gradeToSubmit == blockchainarray[i].grade)
+            {
+                $("#duplicateerror").show(); 
+                shouldSubmit = false; 
+            }
+    }
+
     if(!shouldSubmit)
     {
         e.preventDefault(); 
@@ -227,9 +245,7 @@ $("#signinbutton").click(function(e){
     }
     else // Should submit
     {
-        timestampToSubmit = new Timestamp(); 
-        timestampToSubmit.setCurrentTime(); 
-
+        
         previousHashToSubmit = blockchainarray[blockchainarray.length - 1].hash; 
 
         var blockToSubmit = new Block(nameToSubmit,asbNumberToSubmit,clubToSubmit,gradeToSubmit,timestampToSubmit,previousHashToSubmit,hashToSubmit, paragraphToSubmit, booleanToSubmit, emailToSubmit); 
