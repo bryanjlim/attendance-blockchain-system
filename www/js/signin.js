@@ -313,6 +313,8 @@ $("#signinbutton").click(function(e){
         $("#g11").addClass("disabled"); 
         $("#g12").addClass("disabled"); 
 
+        $("#signInForm").prepend('<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sign In Success!</strong> Have a good one, '+nameToSubmit+' </div>');
+    
         nameToSubmit=""; 
         emailToSubmit=""; 
         asbNumberToSubmit=""; 
@@ -322,8 +324,6 @@ $("#signinbutton").click(function(e){
         timestampToSubmit="";
         previousHashToSubmit=""; 
         hashToSubmit="";
-
-        $("#signInForm").prepend('<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sign In Success!</strong> Have a good one, '+nameToSubmit+' </div>');
     }
 
 }); 
