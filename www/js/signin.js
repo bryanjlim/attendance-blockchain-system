@@ -155,6 +155,8 @@ function cookieFill(){
 
 // On Sign In
 $("#signinbutton").click(function(e){
+	e.preventDefault(); 
+    e.stopPropagation();
     updateBlockchain();
     var shouldSubmit = true; 
 
@@ -282,8 +284,7 @@ $("#signinbutton").click(function(e){
 
     if(!shouldSubmit)
     {
-        e.preventDefault(); 
-        e.stopPropagation();
+        
     }
     else // Should submit
     {
