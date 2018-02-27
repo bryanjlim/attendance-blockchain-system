@@ -36,7 +36,7 @@ var clubList = [
     new Club("Japanese Club","japanese", [fields.NAME, fields.GRADE]),
     new Club("Junior State of America","JSA", [fields.NAME, fields.GRADE]),
     new Club("National Honor Society","NHS", [fields.NAME, fields.GRADE]),
+    new Club("Radio Club", "radio", [fields.NAME, fields.GRADE]),
     new Club("Robotics Club","robotics", [fields.NAME, fields.GRADE]),
     new Club("Starkiller Base","starkillerbase", [fields.NAME, fields.GRADE]),
     new Club("Test Club (For Maintenence)","test", [fields.NAME, fields.ASBNUMBER, fields.EMAIL, fields.PARAGRAPH, fields.BOOLEAN, fields.DATE, fields.GRADE], "Test Boolean Instruction", "Test Paragraph Instruction"),
-]
