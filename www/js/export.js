@@ -136,9 +136,9 @@ $("#export").click(function(e){
             var block = blockchainarray[i];
             if(block.timestamp.getSimpleDate() == exportDate && block.club == clubToExport){
                 var rowToAdd = []; 
-                for(let i = 0; i < firstRow.length; i++)
+                for(let j = 0; j < firstRow.length; j++)
                 {
-                    switch(firstRow[i])
+                    switch(firstRow[j])
                     {
                         case fields.NAME: 
                         rowToAdd.push(block.name); 
