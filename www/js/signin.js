@@ -17,6 +17,11 @@ $(window).on('hashchange', onHashChange);
 // Check hash on startup
 onHashChange(); 
 
+if(window.location.hash != "" || window.location.hash != undefined)
+{
+    clubToSubmit = window.location.hash.slice(1,window.location.hash.length);
+}
+
 // Override hashchange function (When this code makes a hashchange)
 var override = false;
 
@@ -30,7 +35,7 @@ var override = false;
 		} else {	
 			$("#entireClubSelection").hide();	
 			$(".entireSignInFields").empty();
-			$(".entireSignInFields").html(signInFieldDefault);
+            $(".entireSignInFields").html(signInFieldDefault);
 			generateClubFields(window.location.hash.replace("#", ""));		
 			$(".entireSignInFields").show(); 
 		}
@@ -116,7 +121,7 @@ function generateClubFields(clubToSubmit){
                     break; 
 
                     case fields.BOOLEAN: 
-                    $("#signInForm").prepend('<div class="mb-3"><label for="sel1">'+booleanInstructions+'</label><select class="form-control" id="boolean"><option>False</option><option>True</option></select></div> ')
+                    $("#signInForm").prepend('<div class="mb-3"><label for="sel1">'+booleanInstructions+'</label><select class="form-control" id="boolean"><option value="false">False</option><option value="true">True</option></select></div> ')
                     break; 
 
                     case fields.GRADE:
@@ -160,12 +165,12 @@ $("#signinbutton").click(function(e){
     updateBlockchain();
     var shouldSubmit = true; 
 
-    if(Math.abs(latitude - 47.522533) > .06 ||  
-       Math.abs(longitude - -122.028751) > .06)
-    {
-        $("#geolocationerror").show(); 
-        shouldSubmit = false; 
-    }
+    // if(Math.abs(latitude - 47.522533) > .06 ||  
+    //    Math.abs(longitude - -122.028751) > .06)
+    // {
+    //     $("#geolocationerror").show(); 
+    //     shouldSubmit = false; 
+    // }
 
     // If an element with id "name" exists
     if($('#name').length)
@@ -262,6 +267,7 @@ $("#signinbutton").click(function(e){
     {
         // Always has value as selection element
         $("#boolean").addClass("is-valid");
+        booleanToSubmit = $("#boolean").val(); 
     }
 
     // Get current timestamp
@@ -312,6 +318,7 @@ $("#signinbutton").click(function(e){
         blockToSubmit.hash = blockToSubmit.calculateHash(); 
 
         addBlockToDatabase(blockToSubmit);
+
         $("#signInForm")[0].reset(); 
 
         $("#signInForm>div>input.is-valid").removeClass("is-valid");
