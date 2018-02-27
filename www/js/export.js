@@ -223,33 +223,39 @@ $("#gender").click(function(e){
 
     var totalCount = males + females; 
 
-    var chart = new CanvasJS.Chart("genderChart", {
-        theme: "light2",
-        animationEnabled: true,
-        title: {
-            text: "Gender Distribution"
-        },
-        subtitles: [{
-            text: properClubName,
-            fontSize: 16
-        }],
-        data: [{
-            type: "pie",
-            indexLabelFontSize: 18,
-            radius: 80,
-            indexLabel: "{label} - {y}",
-            yValueFormatString: "###0.0\"%\"",
-            click: explodePie,
-            dataPoints: [
-                { y: (males/totalCount*100), label: "Males" },
-                { y: (females/totalCount*100), label: "Females"},
-            ]
-        }]
-    });
-    chart.render();
-
-    $("#genderChart").show(); 
-
+    if(totalCount == 0)
+    {
+        alert("API Error. Try again tomorrow.");
+    }
+    else
+    {
+        var chart = new CanvasJS.Chart("genderChart", {
+            theme: "light2",
+            animationEnabled: true,
+            title: {
+                text: "Gender Distribution"
+            },
+            subtitles: [{
+                text: properClubName,
+                fontSize: 16
+            }],
+            data: [{
+                type: "pie",
+                indexLabelFontSize: 18,
+                radius: 80,
+                indexLabel: "{label} - {y}",
+                yValueFormatString: "###0.0\"%\"",
+                click: explodePie,
+                dataPoints: [
+                    { y: (males/totalCount*100), label: "Males" },
+                    { y: (females/totalCount*100), label: "Females"},
+                ]
+            }]
+        });
+        chart.render();
+    
+        $("#genderChart").show();
+    }
 });
 
 
