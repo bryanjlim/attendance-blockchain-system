@@ -5,6 +5,7 @@ var asbNumberToSubmit="";
 var clubToSubmit=""; 
 var gradeToSubmit=""; 
 var paragraphToSubmit="";
+var dateToSubmit=""; 
 var booleanToSubmit=""; 
 var timestampToSubmit="";
 var previousHashToSubmit=""; 
@@ -117,15 +118,19 @@ function generateClubFields(clubToSubmit){
                     break; 
 
                     case fields.EMAIL:
-                    $("#signInForm").prepend('<div class="mb-3"><label for="email">Email</label><input type="text" class="form-control" id="email" placeholder="" required><div class="invalid-feedback">Please enter a valid email. </div></div>')
+                    $("#signInForm").prepend('<div class="mb-3"><label for="email">Email</label><input type="text" class="form-control" id="email" placeholder="" required><div class="invalid-feedback">Please enter a valid email. </div></div>');
                     break; 
 
                     case fields.BOOLEAN: 
-                    $("#signInForm").prepend('<div class="mb-3"><label for="sel1">'+booleanInstructions+'</label><select class="form-control" id="boolean"><option value="false">False</option><option value="true">True</option></select></div> ')
+                    $("#signInForm").prepend('<div class="mb-3"><label for="sel1">'+booleanInstructions+'</label><select class="form-control" id="boolean"><option value="false">False</option><option value="true">True</option></select></div> ');
                     break; 
 
                     case fields.GRADE:
-                    $("#signInForm").prepend('<div class="mb-3"><label for="grade">Grade</label><nav class="grade-buttons form-control" id="grade-buttons"><button type="button" class="btn btn-outline-primary disabled" id="g9" href="#">Grade 9</button><button type="button" class="btn btn-outline-primary disabled" id="g10" href="#">Grade 10</button><button type="button" class="btn btn-outline-primary disabled" id="g11" href="#">Grade 11</button><button type="button" class="btn btn-outline-primary disabled" id="g12" href="#">Grade 12</button></nav><div class="invalid-feedback">Please select your grade. </div></div>')
+                    $("#signInForm").prepend('<div class="mb-3"><label for="grade">Grade</label><nav class="grade-buttons form-control" id="grade-buttons"><button type="button" class="btn btn-outline-primary disabled" id="g9" href="#">Grade 9</button><button type="button" class="btn btn-outline-primary disabled" id="g10" href="#">Grade 10</button><button type="button" class="btn btn-outline-primary disabled" id="g11" href="#">Grade 11</button><button type="button" class="btn btn-outline-primary disabled" id="g12" href="#">Grade 12</button></nav><div class="invalid-feedback">Please select your grade. </div></div>');
+                    break; 
+
+                    case fields.DATE: 
+                    $("#signInForm").prepend('<div class="mb-3"><label for="address">Scheduler <span class="text-muted">(Optional)</span></label><input type="date" class="form-control" id="date" required><div class="invalid-feedback">Please enter a valid date. </div></div>');
                     break; 
                 }
             }
@@ -231,6 +236,14 @@ $("#signinbutton").click(function(e){
             $("#paragraph").addClass("is-valid");
         }
     }
+
+    // If an element with id "date" exists
+    // NOTE: date is currently optional
+    if($('#date').length)
+    {
+        dateToSubmit = $('#date').val(); 
+        $("#date").addClass("is-valid");
+    }
     
     // If an element with id "grade-buttons" exists
     if($('#grade-buttons').length){
@@ -314,7 +327,7 @@ $("#signinbutton").click(function(e){
 
         previousHashToSubmit = blockchainarray[blockchainarray.length - 1].hash; 
 
-        var blockToSubmit = new Block(nameToSubmit,asbNumberToSubmit,clubToSubmit,gradeToSubmit,timestampToSubmit,previousHashToSubmit,hashToSubmit, paragraphToSubmit, booleanToSubmit, emailToSubmit); 
+        var blockToSubmit = new Block(nameToSubmit,asbNumberToSubmit,clubToSubmit,gradeToSubmit,timestampToSubmit,previousHashToSubmit,hashToSubmit, paragraphToSubmit, booleanToSubmit, emailToSubmit, dateToSubmit); 
         blockToSubmit.hash = blockToSubmit.calculateHash(); 
 
         addBlockToDatabase(blockToSubmit);
@@ -325,6 +338,13 @@ $("#signinbutton").click(function(e){
         $("#signInForm>div>select.is-valid").removeClass("is-valid");
         $("#signInForm>div>textarea.is-valid").removeClass("is-valid");
         $("#signInForm>div>nav.is-valid").removeClass("is-valid");
+        $("#signInForm>div>date.is-valid").removeClass("is-valid");
+
+        $("#signInForm>div>input.is-invalid").removeClass("is-invalid");
+        $("#signInForm>div>select.is-invalid").removeClass("is-invalid");
+        $("#signInForm>div>textarea.is-invalid").removeClass("is-invalid");
+        $("#signInForm>div>nav.is-invalid").removeClass("is-invalid");
+        $("#signInForm>div>date.is-invalid").removeClass("is-invalid");
 
         $("#g9").removeClass("btn-primary"); 
         $("#g10").removeClass("btn-primary"); 
@@ -348,6 +368,7 @@ $("#signinbutton").click(function(e){
         asbNumberToSubmit=""; 
         gradeToSubmit=""; 
         paragraphToSubmit="";
+        dateToSubmit=""; 
         booleanToSubmit=""; 
         timestampToSubmit="";
         previousHashToSubmit=""; 

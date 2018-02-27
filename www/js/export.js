@@ -118,12 +118,58 @@ $("#export").click(function(e){
 
         var exportDate = exportMonth+"/"+exportDay+"/"+exportYear;
 
-        var rows = [["Grade", "Name", "ASB #"]];
+        var firstRow = []; 
+        for(let i = 0; i < clubList.length; i++)
+        {
+            if(clubList[i].shortHandName == clubToExport)
+            {
+                for(let j = 0; j < clubList[i].chosenFields.length; j++)
+                {
+                    firstRow.push(clubList[i].chosenFields[j]);
+                }
+            }
+        }
+
+        var rows = [firstRow];
         var rowNum = 1;
         for(var i = 0; i < blockchainarray.length; i++){
             var block = blockchainarray[i];
             if(block.timestamp.getSimpleDate() == exportDate && block.club == clubToExport){
-                rows[rowNum] = [block.grade, block.name, block.asbNumber];
+                var rowToAdd = []; 
+                for(let i = 0; i < firstRow.length; i++)
+                {
+                    switch(firstRow[i])
+                    {
+                        case fields.NAME: 
+                        rowToAdd.push(block.name); 
+                        break;
+
+                        case fields.ASBNUMBER:
+                        rowToAdd.push(block.asbNumber); 
+                        break; 
+
+                        case fields.PARAGRAPH:
+                        rowToAdd.push(block.paragraph); 
+                        break; 
+
+                        case fields.EMAIL:
+                        rowToAdd.push(block.email); 
+                        break; 
+
+                        case fields.BOOLEAN:
+                        rowToAdd.push(block.boolean); 
+                        break; 
+
+                        case fields.GRADE:
+                        rowToAdd.push(block.grade); 
+                        break;  
+
+                        case fields.DATE:
+                        rowToAdd.push(block.date); 
+                        break;  
+                    }
+                }
+                rows[rowNum] = rowToAdd;
                 rowNum++;
             }
         }
@@ -154,17 +200,67 @@ $("#exportAll").click(function(e){
     e.preventDefault(); 
     $(".alert").show(); 
 
-    var rows = [["Grade", "Name", "ASB #"]];
+    var firstRow = []; 
+    for(let i = 0; i < clubList.length; i++)
+    {
+        if(clubList[i].shortHandName == clubToExport)
+        {
+            for(let j = 0; j < clubList[i].chosenFields.length; j++)
+            {
+                firstRow.push(clubList[i].chosenFields[j]);
+            }
+        }
+    }
+
+    var rows = [firstRow];
     var rowNum = 1;
-    for(var i = 0; i < blockchainarray.length; i++){
+    for(var i = 0; i < blockchainarray.length; i++)
+    {
         var block = blockchainarray[i];
-        if(block.club == clubToExport){
-            rows[rowNum] = [block.grade, block.name, block.asbNumber];
+        if(block.club == clubToExport)
+        {
+            var rowToAdd = []; 
+            for(let i = 0; i < firstRow.length; i++)
+            {
+                switch(firstRow[i])
+                {
+                    case fields.NAME: 
+                    rowToAdd.push(block.name); 
+                    break;
+
+                    case fields.ASBNUMBER:
+                    rowToAdd.push(block.asbNumber); 
+                    break; 
+
+                    case fields.PARAGRAPH:
+                    rowToAdd.push(block.paragraph); 
+                    break; 
+
+                    case fields.EMAIL:
+                    rowToAdd.push(block.email); 
+                    break; 
+
+                    case fields.BOOLEAN:
+                    rowToAdd.push(block.boolean); 
+                    break; 
+
+                    case fields.GRADE:
+                    rowToAdd.push(block.grade); 
+                    break;  
+
+                    case fields.DATE:
+                    rowToAdd.push(block.date); 
+                    break;  
+                }
+            }
+
+            rows[rowNum] = rowToAdd;
             rowNum++;
         }
     }
     let csvContent = "data:text/csv;charset=utf-8,";
-    rows.forEach(function(rowArray){
+    rows.forEach(function(rowArray)
+    {
         let row = rowArray.join(",");
         csvContent += row + "\r\n";
     }); 
@@ -184,7 +280,8 @@ $("#exportAll").click(function(e){
 $("#gender").click(function(e){
     e.preventDefault(); 
 
-    for(let i=0; i<clubList.length; i++){
+    for(let i=0; i<clubList.length; i++)
+    {
         if(clubList[i].shortHandName == clubToExport)
         {  
             properClubName = clubList[i].clubName;

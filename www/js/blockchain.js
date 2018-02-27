@@ -1,6 +1,6 @@
 class Block
 {
-    constructor(name, asbNumber, club, grade, timestamp, previousHash, hash, paragraph, boolean, email)
+    constructor(name, asbNumber, club, grade, timestamp, previousHash, hash, paragraph, boolean, email, date)
     {
         this.name = name; 
         this.asbNumber = asbNumber;
@@ -12,6 +12,7 @@ class Block
         this.paragraph = paragraph;
         this.boolean = boolean; 
         this.email = email; 
+        this.date = date; 
     }
 
     calculateHash()

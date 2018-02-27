@@ -1,11 +1,12 @@
 // Enumeration for sign in fields
 var fields = Object.freeze({
-    NAME: 1,
-    GRADE: 2, 
-    ASBNUMBER: 3,
-    EMAIL: 4, 
-    BOOLEAN: 5, 
-    PARAGRAPH: 6
+    NAME: "name",
+    GRADE: "grade", 
+    ASBNUMBER: "asbNumber",
+    EMAIL: "email", 
+    BOOLEAN: "boolean", 
+    PARAGRAPH: "paragraph",
+    DATE: "date" // Optional
 }); 
 
 class Club{
@@ -27,7 +28,7 @@ class Club{
 var clubList = [
     new Club("Astronomy Club","astronomy", [fields.NAME, fields.GRADE]), 
     new Club("Code Club","code", [fields.NAME, fields.GRADE]),
-    new Club("Creative Writing Club","creativewriting", [fields.NAME, fields.GRADE]),
+    new Club("Creative Writing Club","creativewriting", [fields.NAME, fields.EMAIL, fields.DATE, fields.GRADE]),
     new Club("French Club","french", [fields.NAME, fields.GRADE]),
     new Club("Girls Who Code","girlswhocode", [fields.NAME, fields.GRADE]),
     new Club("Green Team","green", [fields.NAME, fields.GRADE]),
@@ -37,5 +38,5 @@ var clubList = [
     new Club("National Honor Society","NHS", [fields.NAME, fields.GRADE]),
     new Club("Robotics Club","robotics", [fields.NAME, fields.GRADE]),
     new Club("Starkiller Base","starkillerbase", [fields.NAME, fields.GRADE]),
-    new Club("Test Club (For Maintenence)","test", [fields.NAME, fields.ASBNUMBER, fields.EMAIL, fields.PARAGRAPH, fields.BOOLEAN, fields.GRADE], "Test Boolean Instruction", "Test Paragraph Instruction"),
+    new Club("Test Club (For Maintenence)","test", [fields.NAME, fields.ASBNUMBER, fields.EMAIL, fields.PARAGRAPH, fields.BOOLEAN, fields.DATE, fields.GRADE], "Test Boolean Instruction", "Test Paragraph Instruction"),
 ]
