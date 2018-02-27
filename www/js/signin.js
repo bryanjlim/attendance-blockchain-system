@@ -18,10 +18,6 @@ $(window).on('hashchange', onHashChange);
 // Check hash on startup
 onHashChange(); 
 
-if(window.location.hash != "" || window.location.hash != undefined)
-{
-    clubToSubmit = window.location.hash.slice(1,window.location.hash.length);
-}
 
 // Override hashchange function (When this code makes a hashchange)
 var override = false;
@@ -37,7 +33,9 @@ var override = false;
 			$("#entireClubSelection").hide();	
 			$(".entireSignInFields").empty();
             $(".entireSignInFields").html(signInFieldDefault);
-			generateClubFields(window.location.hash.replace("#", ""));		
+			clubToSubmit = window.location.hash.replace("#", "");
+			generateClubFields(clubToSubmit);
+			
 			$(".entireSignInFields").show(); 
 		}
 	} else {
@@ -50,11 +48,17 @@ var override = false;
 $('#entireClubSelection').on('click', '.clubLink', function(e)
 {
 	selectClub($(this).attr('shorthand'));
+	// Animate selection
+	$("#entireClubSelection").hide(250); 
+	$(".entireSignInFields").show(250); 
 });
 
 $('#selectClubForm').submit(function(e){
 	e.preventDefault();
 	selectClub(search());
+	// Animate selection
+	$("#entireClubSelection").hide(250); 
+	$(".entireSignInFields").show(250); 
 	return false;
 });
 
@@ -78,9 +82,7 @@ function selectClub(club){
 		// Generate selection fields for selected club
 		generateClubFields(clubToSubmit);
 		
-		// Animate selection
-		$("#entireClubSelection").hide(250); 
-		$(".entireSignInFields").show(250); 
+
 	}
 }
 
