@@ -29,6 +29,7 @@ var clubList = [
     new Club("Astronomy Club","astronomy", [fields.NAME, fields.GRADE]), 
     new Club("Code Club","code", [fields.NAME, fields.GRADE]),
     new Club("Creative Writing Club","creativewriting", [fields.NAME, fields.EMAIL, fields.DATE, fields.GRADE]),
+    new Club("Engineering Club","engineering", [fields.NAME, fields.GRADE]),
     new Club("French Club","french", [fields.NAME, fields.GRADE]),
     new Club("Girls Who Code","girlswhocode", [fields.NAME, fields.GRADE]),
     new Club("Green Team","green", [fields.NAME, fields.GRADE]),
