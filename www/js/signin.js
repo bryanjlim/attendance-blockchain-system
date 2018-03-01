@@ -81,8 +81,6 @@ function selectClub(club){
 		
 		// Generate selection fields for selected club
 		generateClubFields(clubToSubmit);
-		
-
 	}
 }
 

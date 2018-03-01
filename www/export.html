@@ -40,9 +40,11 @@
 		<div id="entireClubSelection">
 			<div class="centerWrapper text-center mr-auto">
 				<h1 class="select-club-title">Select Club To Export</h1>
+				<form id="selectClubForm">
 				<input id="selectClub" placeholder="Search..." onkeydown=search() onkeyup="search()" autocomplete="off">
 				<!-- Use hidden submit field to allow mobile users to select enter key on mobile keyboard -->
 				<input type="submit" style="visibility:hidden;position:absolute"/>
+				</form>
 				<br/>
 				<div class="clubList">
 						<!-- Items populated in clubsearch.js on ready -->
@@ -97,7 +99,7 @@
 				<hr class="mb-4">
 				<button class="btn btn-primary btn-lg btn-block" id="gender" type="submit">Generate Gender Insights (Experimental)</button>
 				
-				<div id="genderChart" style="height: 370px; width: 100%;">
+				<div id="genderChart" style="height: 370px; width: 100%;"> </div>
                 
                 <div class="alert alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -122,5 +124,7 @@
 		<script src="js/bodyloader.js"></script>
 		<script src="js/clubsearch.js"></script>
 		<script src="js/export.js"></script>
+		<script src="js/cloner.js"></script>
+
 	</body>
 </html>

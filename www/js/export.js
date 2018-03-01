@@ -1,12 +1,71 @@
 var clubToExport; 
-var properClubName; 
+var properClubName;
+
+var exportFieldDefault = $(".entireExportFields").clone().html();
+
+// Bind hashchange to onHashChange function
+$(window).on('hashchange', onHashChange);
+
+// Check hash on startup
+onHashChange();
+
+// Override hashchange function (When this code makes a hashchange)
+var override = false;
+
+ function onHashChange(){
+// Load correct page
+	if(!override){
+		if(window.location.hash == ""){
+			if($('#entireClubSelection:visible').length < 1){ // On club sign in page, but no hash
+				window.location.reload(); // Reload page to get back to entire club selection
+			}
+		} else {	
+		updateBlockchain();
+			$("#entireClubSelection").hide();	
+			$(".entireExportFields").empty();
+            $(".entireExportFields").html(exportFieldDefault);
+			clubToExport = window.location.hash.replace("#", "");
+			loadExport();
+			
+			$(".entireExportFields").show();
+		}
+	} else {
+		// Reset override (use once)
+		override = false;
+	}
+}
 
 // On club selection from list
 $('#entireClubSelection').on('click', '.clubLink', function(e)
 {
     updateBlockchain();
-    clubToExport = $(e.target).attr('shorthand');
+    selectClub($(this).attr('shorthand'));
+	
+});
+$('#selectClubForm').submit(function(e){
+	e.preventDefault();
+	club = search();
+	selectClub(club);
+	return false;
+});
+var selected = false;
+function selectClub(club){
+	if(!selected){
+		selected = true;
+		clubToExport = club;
+		updateBlockchain();
+		
+		override = true;
+		loadExport();
+		
+		// Animate selection
+		$("#entireClubSelection").hide(250); 
+		$(".entireExportFields").show(250); 
+	}
+}
 
+function loadExport(){
+			
     for(let i=0; i<clubList.length; i++){
         if(clubList[i].shortHandName == clubToExport)
         {  
@@ -27,10 +86,10 @@ $('#entireClubSelection').on('click', '.clubLink', function(e)
             $('#year').append('<option value="'+year+'">'+year+'</option>');
         }
     }
+	// Set hash to club shorthand
+	window.location.hash = clubToExport;
 
-    $("#entireClubSelection").hide(250); 
-    $(".entireExportFields").show(250); 
-});
+}
 
 
 // On Year Change
@@ -81,7 +140,7 @@ $('#month').on('change', function (e) {
 // On export 
 $("#export").click(function(e){
     updateBlockchain();
-
+	
     var shouldExport = true;
 
     if($('#year').val() == "none" || $('#year').val() == "")
@@ -110,6 +169,7 @@ $("#export").click(function(e){
     else
     {
         e.preventDefault(); 
+		e.stopPropagation();
         $(".alert").show(); 
 
         var exportMonth = $("#month").val(); 
@@ -132,8 +192,11 @@ $("#export").click(function(e){
 
         var rows = [firstRow];
         var rowNum = 1;
-        for(var i = 0; i < blockchainarray.length; i++){
-            var block = blockchainarray[i];
+		console.log(blockchainarray.length);
+		var bcCopy = cloner.shallow.copy(blockchainarray);
+        for(let i = 0; i < blockchainarray.length; i++){
+            var block = cloner.deep.copy(bcCopy[i]);
+
             if(block.timestamp.getSimpleDate() == exportDate && block.club == clubToExport){
                 var rowToAdd = []; 
                 for(let j = 0; j < firstRow.length; j++)
@@ -173,6 +236,7 @@ $("#export").click(function(e){
                 rowNum++;
             }
         }
+
         let csvContent = "data:text/csv;charset=utf-8,";
         rows.forEach(function(rowArray){
             let row = rowArray.join(",");
@@ -291,7 +355,7 @@ $("#gender").click(function(e){
     var names = []; 
     var males = 0; 
     var females = 0; 
-
+	
     for(let i = 0; i < blockchainarray.length; i++)
     {
         var block = blockchainarray[i];

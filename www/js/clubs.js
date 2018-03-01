@@ -1,12 +1,12 @@
 // Enumeration for sign in fields
 var fields = Object.freeze({
-    NAME: "name",
-    GRADE: "grade", 
-    ASBNUMBER: "asbNumber",
-    EMAIL: "email", 
-    BOOLEAN: "boolean", 
-    PARAGRAPH: "paragraph",
-    DATE: "date" // Optional
+    NAME: "Name",
+    GRADE: "Grade", 
+    ASBNUMBER: "ASB Number",
+    EMAIL: "Email", 
+    BOOLEAN: "Boolean", 
+    PARAGRAPH: "Paragraph",
+    DATE: "Date" // Optional
 }); 
 
 class Club{

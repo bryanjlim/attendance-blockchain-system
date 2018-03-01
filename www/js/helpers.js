@@ -17,8 +17,10 @@ updateBlockchain();
 // Updates variable blockchainarray 
 function updateBlockchain()
 {
+	
     databaseRef.once("value", function(snapshot)
     {
+		blockchainarray.length = 0;
         snapshot.forEach(function(data){
                 var hour = data.val().timestamp.hour == undefined ? 0 : data.val().timestamp.hour; 
                 var minutes = data.val().timestamp.minutes == undefined ? 0 : data.val().timestamp.minute; 
@@ -36,10 +38,10 @@ function updateBlockchain()
                                         data.val().date
                                     );
 
-                if(!blockchainarray.includes(block))
-                {
+              //  if(!blockchainarray.includes(block))
+              //  {
                     blockchainarray.push(block);
-                }
+              //  }
         })
     })
 } 
