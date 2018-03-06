@@ -15,12 +15,11 @@ var blockchainarray = [];
 updateBlockchain(); 
 
 // Updates variable blockchainarray 
-function updateBlockchain()
-{
-	
+function updateBlockchain(callback)
+{	
     databaseRef.once("value", function(snapshot)
     {
-		blockchainarray.length = 0;
+		var newBlockchain = [];
         snapshot.forEach(function(data){
                 var hour = data.val().timestamp.hour == undefined ? 0 : data.val().timestamp.hour; 
                 var minutes = data.val().timestamp.minutes == undefined ? 0 : data.val().timestamp.minute; 
@@ -40,10 +39,15 @@ function updateBlockchain()
 
               //  if(!blockchainarray.includes(block))
               //  {
-                    blockchainarray.push(block);
+                    newBlockchain.push(block);
               //  }
         })
+		blockchainarray = newBlockchain;	
+		if(callback != null){
+			callback();
+		}
     })
+	
 } 
 
 // Adds singular block to database
@@ -94,4 +98,11 @@ function getGenderFromName(name)
         }
     }    
     return null; 
+}
+
+// Date helpers
+var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+Date.prototype.getFormattedDate = function() {
+	return formattedDate = '"' + months[this.getMonth()] + " " + this.getDate() + ", " + this.getFullYear() + " (" + days[this.getDay()] + ")" + '"';
 }

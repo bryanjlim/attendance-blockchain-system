@@ -6,7 +6,7 @@ var fields = Object.freeze({
     EMAIL: "Email", 
     BOOLEAN: "Boolean", 
     PARAGRAPH: "Paragraph",
-    DATE: "Date" // Optional
+    DATE: "Selected Date" // Optional
 }); 
 
 class Club{
