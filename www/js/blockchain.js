@@ -40,12 +40,12 @@ class Blockchain
             const previousBlock = this.chain[i-1];
 
             if(currentBlock.hash !== currentBlock.calculateHash()){
-                alert("Current Hash Mistmatch At Index" + i);
+                alert("Current Hash Mistmatch At Index" + i + "   " + "Name: "+ currentBlock.name + "   Date: " + currentBlock.timestamp.toString());
                 return;
             }
 
             if(currentBlock.previousHash !== previousBlock.calculateHash()){
-                alert("Previous Hash Mistmatch At Index" + i);
+                alert("Previous Hash Mistmatch At Index" + i + "   " + "Name: "+ currentBlock.name + "   Date: " + currentBlock.timestamp.toString());
                 return;
             }
         }
