@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/navbar.css">
 		<link rel="stylesheet" type="text/css" href="css/about.css">
-		<title>IHS Attendance Blockchain System</title>
+		<title>IHS Attendance Business System</title>
 	</head>
 
 	<body>
@@ -40,10 +40,10 @@
             <center><img class="logo" src="img/ABSLogo.png"></img></center>
             <hr class="mb-4 lineBelow">
 
-            <h2 class="text-center"><b>A</b>ttendance <b>B</b>lockchain <b>S</b>ystem (V1.0)</h2>
+            <h2 class="text-center"><b>A</b>ttendance <b>B</b>usiness <b>S</b>ystem (V1.0)</h2>
 
             <h3>What Is ABS?</h3>
-            <p>A standardized attendance system for Issaquah High School clubs. Seamless sign-in and exporting on the front-end is combined with a blockchain containing SHA-256 hashes for blocks and the power of the Google Cloud on the backend.</p>
+            <p>A standardized attendance system for Issaquah High School clubs. Seamless sign-in and exporting on the front-end is combined with the Google Cloud on the backend.</p>
             
             <h3>Why Use ABS?</h3>
             <p>You won't have to waste another piece of paper or make another Google Form ever again. It's an ASB-approved mean of attendance-taking and storage. It has built-in geolocation protection alongside support from the Issaquah Robotics Society and IHS Code Club to fulfill your every need.</p>
@@ -52,10 +52,7 @@
             <p>Each club has customizable sign-in fields. Just want names and grades? Easy! Want sign-ins with ASB numbers, a paragraph input, a boolean input, and geolocation protection ontop of a required password? Also easy!</p>
             
             <h3>Securely Designed</h3>
-            <p>Using an immutable blockchain, attendance data can't be tampered with. Server-side data validation ensures current time, so you can't add sign-ins to past dates. By verifying the past and current hashes of blocks, we can ensure blockchain validity (nothing has been tampered with).</p>
-        
-            <i>Try it out (yes, this actually does something... you can check the code):</i>
-            <button class="btn btn-primary btn-lg btn-block" id="verify" type="submit">Check Blockchain Validity</button>
+            <p>Server-side data validation ensures current time, so you can't add sign-ins to past dates. This is ontop of client-side verification for convenience.</p>
 
             <hr class="mb-4">
             
@@ -111,8 +108,6 @@
 		<script src="js/sha256.js"></script>
 		<script src="js/timestamp.js"></script>
 		<script src="js/helpers.js"></script>
-        <script src="js/blockchain.js"></script>
         <script src="js/bodyloader.js"></script>
-        <script src="js/about.js"></script>
 	</body>
 </html>

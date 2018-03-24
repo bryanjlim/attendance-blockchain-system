@@ -8,8 +8,6 @@ var paragraphToSubmit="";
 var dateToSubmit=""; 
 var booleanToSubmit=""; 
 var timestampToSubmit="";
-var previousHashToSubmit=""; 
-var hashToSubmit="";
 
 var signInFieldDefault = $(".entireSignInFields").clone().html();
 // Bind hashchange to onHashChange function
@@ -167,15 +165,16 @@ function cookieFill(){
 $("#signinbutton").click(function(e){
 	e.preventDefault(); 
     e.stopPropagation();
-    updateBlockchain();
+    updateAttendanceData();
     var shouldSubmit = true; 
 
-    // if(Math.abs(latitude - 47.522533) > .06 ||  
-    //    Math.abs(longitude - -122.028751) > .06)
-    // {
-    //     $("#geolocationerror").show(); 
-    //     shouldSubmit = false; 
-    // }
+    // Verify that user is at Issaquah High School
+    if(Math.abs(latitude - 47.522533) > .06 ||  
+       Math.abs(longitude - -122.028751) > .06)
+    {
+        $("#geolocationerror").show(); 
+        shouldSubmit = false; 
+    }
 
     // If an element with id "name" exists
     if($('#name').length)
@@ -289,12 +288,12 @@ $("#signinbutton").click(function(e){
 
 
     // Check to see if person already signed in that day
-    for(let i=0; i<blockchainarray.length; i++)
+    for(let i=0; i<attendancedata.length; i++)
     {
-        if(nameToSubmit == blockchainarray[i].name &&
-            clubToSubmit == blockchainarray[i].club && 
-            timestampToSubmit.getSimpleDate() == blockchainarray[i].timestamp.getSimpleDate() &&
-            gradeToSubmit == blockchainarray[i].grade)
+        if(nameToSubmit == attendancedata[i].name &&
+            clubToSubmit == attendancedata[i].club && 
+            timestampToSubmit.getSimpleDate() == attendancedata[i].timestamp.getSimpleDate() &&
+            gradeToSubmit == attendancedata[i].grade)
             {
                 $("#duplicateerror").show(); 
                 shouldSubmit = false; 
@@ -325,12 +324,8 @@ $("#signinbutton").click(function(e){
         timestampToSubmit = new Timestamp(); 
         timestampToSubmit.setCurrentTime(); 
 
-        previousHashToSubmit = blockchainarray[blockchainarray.length - 1].hash; 
-
-        var blockToSubmit = new Block(nameToSubmit,asbNumberToSubmit,clubToSubmit,gradeToSubmit,timestampToSubmit,previousHashToSubmit,hashToSubmit, paragraphToSubmit, booleanToSubmit, emailToSubmit, dateToSubmit); 
-        blockToSubmit.hash = blockToSubmit.calculateHash(); 
-
-        addBlockToDatabase(blockToSubmit);
+        var entryToSubmit = new SignInEntry(nameToSubmit,asbNumberToSubmit,clubToSubmit,gradeToSubmit,timestampToSubmit, paragraphToSubmit, booleanToSubmit, emailToSubmit, dateToSubmit); 
+        addSignInEntryToDatabase(entryToSubmit);
 
         $("#signInForm")[0].reset(); 
 
@@ -371,8 +366,6 @@ $("#signinbutton").click(function(e){
         dateToSubmit=""; 
         booleanToSubmit=""; 
         timestampToSubmit="";
-        previousHashToSubmit=""; 
-        hashToSubmit="";
     }
 
 }); 

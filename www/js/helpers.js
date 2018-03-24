@@ -11,38 +11,32 @@ firebase.initializeApp(config);
 var databaseRef = firebase.database().ref();
 
 // Blockchain array
-var blockchainarray = []; 
-updateBlockchain(); 
+var attendancedata = []; 
+updateAttendanceData(); 
 
-// Updates variable blockchainarray 
-function updateBlockchain(callback)
+// Updates variable attendancedata 
+function updateAttendanceData(callback)
 {	
     databaseRef.once("value", function(snapshot)
     {
-		var newBlockchain = [];
+		var newattendancedata = [];
         snapshot.forEach(function(data){
                 var hour = data.val().timestamp.hour == undefined ? 0 : data.val().timestamp.hour; 
                 var minutes = data.val().timestamp.minutes == undefined ? 0 : data.val().timestamp.minute; 
                 var totalMilliseconds = data.val().timestamp.totalMilliseconds == undefined ? 0 : data.val().timestamp.totalMilliseconds; 
-                var block = new Block(data.val().name, 
+                var block = new SignInEntry(data.val().name, 
                                         data.val().asbNumber, 
                                         data.val().club, 
                                         data.val().grade, 
                                         new Timestamp(data.val().timestamp.day,data.val().timestamp.month,data.val().timestamp.year, hour, minutes, totalMilliseconds), 
-                                        data.val().previousHash, 
-                                        data.val().hash,
                                         data.val().paragraph,
                                         data.val().boolean,
                                         data.val().email,
                                         data.val().date
                                     );
-
-              //  if(!blockchainarray.includes(block))
-              //  {
-                    newBlockchain.push(block);
-              //  }
+                    newattendancedata.push(block);
         })
-		blockchainarray = newBlockchain;	
+		attendancedata = newattendancedata;	
 		if(callback != null){
 			callback();
 		}
@@ -50,9 +44,9 @@ function updateBlockchain(callback)
 	
 } 
 
-// Adds singular block to database
-function addBlockToDatabase(block){
-    databaseRef.push(block);
+// Adds singular sign in entry to database
+function addSignInEntryToDatabase(signInEntry){
+    databaseRef.push(signInEntry);
 }
 
 // Geolocation

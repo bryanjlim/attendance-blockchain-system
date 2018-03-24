@@ -14,7 +14,7 @@ var override = false;
 
 function onHashChange(){
 	// Load correct page
-	updateBlockchain(function(){
+	updateAttendanceData(function(){
 		if(!override){
 			if(window.location.hash == ""){
 				if($('#entireClubSelection:visible').length < 1){ // On club sign in page, but no hash
@@ -54,7 +54,7 @@ function selectClub(club){
 	if(!selected){
 		selected = true;
 		clubToExport = club;
-		updateBlockchain(function(){
+		updateAttendanceData(function(){
 			loadExport();
 			// Animate selection
 			$("#entireClubSelection").hide(250); 
@@ -76,12 +76,12 @@ function loadExport(){
         }
     }
     // Populate year   
-    for(let i=0; i < blockchainarray.length; i++)
+    for(let i=0; i < attendancedata.length; i++)
     {
-        var currentBlock = blockchainarray[i]; 
-        var year = currentBlock.timestamp.year; 
+        var currentEntry = attendancedata[i]; 
+        var year = currentEntry.timestamp.year; 
 
-        if($("#year option[value="+year+"]").length == 0 && currentBlock.club == clubToExport)
+        if($("#year option[value="+year+"]").length == 0 && currentEntry.club == clubToExport)
         {
             $('#year').append('<option value="'+year+'">'+year+'</option>');
         }
@@ -98,12 +98,12 @@ $(document.body).on('change', "#year", function (e) {
     var yearSelected = this.value;
 
     // Populate months
-    for(let i=0; i < blockchainarray.length; i++)
+    for(let i=0; i < attendancedata.length; i++)
     {
-        var currentBlock = blockchainarray[i]; 
-        var month = currentBlock.timestamp.month; 
+        var currentEntry = attendancedata[i]; 
+        var month = currentEntry.timestamp.month; 
 
-        if($("#month option[value="+month+"]").length == 0 && currentBlock.club == clubToExport && currentBlock.timestamp.year == yearSelected)
+        if($("#month option[value="+month+"]").length == 0 && currentEntry.club == clubToExport && currentEntry.timestamp.year == yearSelected)
         {
             $('#month').append('<option value="'+month+'">'+month+'</option>');
         }
@@ -125,12 +125,12 @@ $(document.body).on('change', "#month", function (e) {
     var monthSelected = this.value;
 
     // Populate months
-    for(let i=0; i < blockchainarray.length; i++)
+    for(let i=0; i < attendancedata.length; i++)
     {
-        var currentBlock = blockchainarray[i]; 
-        var day = currentBlock.timestamp.day; 
+        var currentEntry = attendancedata[i]; 
+        var day = currentEntry.timestamp.day; 
 
-        if($("#day option[value="+day+"]").length == 0 && currentBlock.club == clubToExport && currentBlock.timestamp.month == monthSelected)
+        if($("#day option[value="+day+"]").length == 0 && currentEntry.club == clubToExport && currentEntry.timestamp.month == monthSelected)
         {
             $('#day').append('<option value="'+day+'">'+day+'</option>');
         }
@@ -192,41 +192,41 @@ $(document.body).on('click', "#export", function (e) {
 
         var rows = [firstRow, secondRow];
         var rowNum = 2;
-        for(let i = 0; i < blockchainarray.length; i++){
-            var block = blockchainarray[i];
+        for(let i = 0; i < attendancedata.length; i++){
+            var signinentry = attendancedata[i];
 
-            if(block.timestamp.getSimpleDate() == exportDate && block.club == clubToExport){
+            if(signinentry.timestamp.getSimpleDate() == exportDate && signinentry.club == clubToExport){
                 var rowToAdd = []; 
                 for(let j = 0; j < secondRow.length; j++)
                 {
                     switch(secondRow[j])
                     {
                         case fields.NAME: 
-                        rowToAdd.push(block.name); 
+                        rowToAdd.push(signinentry.name); 
                         break;
 
                         case fields.ASBNUMBER:
-                        rowToAdd.push(block.asbNumber); 
+                        rowToAdd.push(signinentry.asbNumber); 
                         break; 
 
                         case fields.PARAGRAPH:
-                        rowToAdd.push(block.paragraph); 
+                        rowToAdd.push(signinentry.paragraph); 
                         break; 
 
                         case fields.EMAIL:
-                        rowToAdd.push(block.email); 
+                        rowToAdd.push(signinentry.email); 
                         break; 
 
                         case fields.BOOLEAN:
-                        rowToAdd.push(block.boolean); 
+                        rowToAdd.push(signinentry.boolean); 
                         break; 
 
                         case fields.GRADE:
-                        rowToAdd.push(block.grade); 
+                        rowToAdd.push(signinentry.grade); 
                         break;  
 
                         case fields.DATE:
-                        rowToAdd.push(block.date); 
+                        rowToAdd.push(signinentry.date); 
                         break;  
                     }
                 }
@@ -276,42 +276,42 @@ $(document.body).on('click', "#exportAll", function (e) {
 	var header = [clubName + " Full Attendance List"];
     var rows = [header, firstRow];
     var rowNum = 2;
-    for(let i = 0; i < blockchainarray.length; i++)
+    for(let i = 0; i < attendancedata.length; i++)
     {
-        var block = blockchainarray[i];
-        if(block.club == clubToExport)
+        var signinentry = attendancedata[i];
+        if(signinentry.club == clubToExport)
         {
-            var rowToAdd = [block.timestamp.getSimpleDate()]; 
+            var rowToAdd = [signinentry.timestamp.getSimpleDate()]; 
             for(let j = 0; j < firstRow.length; j++)
             {
                 switch(firstRow[j])
                 {
                     case fields.NAME: 
-                    rowToAdd.push(block.name); 
+                    rowToAdd.push(signinentry.name); 
                     break;
 
                     case fields.ASBNUMBER:
-                    rowToAdd.push(block.asbNumber); 
+                    rowToAdd.push(signinentry.asbNumber); 
                     break; 
 
                     case fields.PARAGRAPH:
-                    rowToAdd.push(block.paragraph); 
+                    rowToAdd.push(signinentry.paragraph); 
                     break; 
 
                     case fields.EMAIL:
-                    rowToAdd.push(block.email); 
+                    rowToAdd.push(signinentry.email); 
                     break; 
 
                     case fields.BOOLEAN:
-                    rowToAdd.push(block.boolean); 
+                    rowToAdd.push(signinentry.boolean); 
                     break; 
 
                     case fields.GRADE:
-                    rowToAdd.push(block.grade); 
+                    rowToAdd.push(signinentry.grade); 
                     break;  
 
                     case fields.DATE:
-                    rowToAdd.push(block.date); 
+                    rowToAdd.push(signinentry.date); 
                     break;  
                 }
             }
@@ -354,14 +354,14 @@ $(document.body).on('click', "#gender", function (e) {
     var males = 0; 
     var females = 0; 
 	
-    for(let i = 0; i < blockchainarray.length; i++)
+    for(let i = 0; i < attendancedata.length; i++)
     {
-        var block = blockchainarray[i];
-        if(block.club == clubToExport)
+        var signinentry = attendancedata[i];
+        if(signinentry.club == clubToExport)
         {
-            if(!(names.includes(block.name)))
+            if(!(names.includes(signinentry.name)))
             {
-                names.push(block.name);
+                names.push(signinentry.name);
             }
         }
     }
