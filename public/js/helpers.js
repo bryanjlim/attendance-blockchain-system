@@ -1,12 +1,12 @@
 // Firebase
 var config = {
-    apiKey: "AIzaSyDLrLyawb7-sC86nPa_Y4c4U07oI4gD7bk",
-    authDomain: "issaquah-attendance-bloc-c0c08.firebaseapp.com",
-    databaseURL: "https://issaquah-attendance-bloc-c0c08.firebaseio.com",
-    projectId: "issaquah-attendance-bloc-c0c08",
-    storageBucket: "issaquah-attendance-bloc-c0c08.appspot.com",
-    messagingSenderId: "706537935134"
-}
+    apiKey: "AIzaSyDYduPzCcHGnIzJN0Q4r3LU-YsOYRzXASM",
+    authDomain: "ihs-attendance.firebaseapp.com",
+    databaseURL: "https://ihs-attendance.firebaseio.com",
+    projectId: "ihs-attendance",
+    storageBucket: "ihs-attendance.appspot.com",
+    messagingSenderId: "454445401985"
+  };
 firebase.initializeApp(config);
 var databaseRef = firebase.database().ref();
 
