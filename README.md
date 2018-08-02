@@ -1,4 +1,4 @@
-# attendance-business-system
+# attendance-business-system (abs)
 
 A web service for clubs and organizations at Issaquah High School to take attendance and export attendance data <br />
 
