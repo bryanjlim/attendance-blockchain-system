@@ -62,38 +62,6 @@ function httpGet(theUrl)
 }
 
 
-function getGenderFromName(name)
-{
-    var result = httpGet("https://api.genderize.io/?name="+name);
-
-    if(result != null)
-    {
-        var splitResult = result.split(","); 
-        if(splitResult[1] != null)
-        {
-            var genderString = splitResult[1]; 
-            var genderSplit = genderString.split(":");
-            if (genderSplit[1] == '"male"')
-            {
-                return "male"; 
-            } 
-            else if (genderSplit[1] == '"female"')
-            {
-                return "female"; 
-            }
-            else
-            {
-                return null; 
-            }
-        }
-        else
-        {
-            return null; 
-        }
-    }    
-    return null; 
-}
-
 // Date helpers
 var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
