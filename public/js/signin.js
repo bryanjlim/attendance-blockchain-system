@@ -169,8 +169,8 @@ $("#signinbutton").click(function(e){
     var shouldSubmit = true; 
 
     // Verify that user is at Issaquah High School
-    if(Math.abs(latitude - 47.522533) > .06 ||  
-       Math.abs(longitude - -122.028751) > .06)
+    if(Math.abs(latitude - 47.522533) > .05 ||  
+       Math.abs(longitude - -122.028751) > .05)
     {
         $("#geolocationerror").show(); 
         shouldSubmit = false; 
