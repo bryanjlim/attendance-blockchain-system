@@ -41,5 +41,8 @@ var clubList = [
     new Club("Issaquah Robotics Society","robotics", [fields.NAME, fields.GRADE]),
     new Club("Starkiller Base","starkillerbase", [fields.NAME, fields.GRADE]),
     new Club("Test Club (For Maintenence)","test", [fields.NAME, fields.ASBNUMBER, fields.EMAIL, fields.PARAGRAPH, fields.BOOLEAN, fields.DATE, fields.GRADE], "Test Boolean Instruction", "Test Paragraph Instruction"),
-	new Club("Issaquah Debate Team", "debateteam", [fields.NAME, fields.GRADE])
+    new Club("Issaquah Debate Team", "debateteam", [fields.NAME, fields.GRADE]),
+    new Club("Issaquah Film Club", "IFC", [fields.NAME, fields.GRADE]),
+    new Club("Sports Med Club", "SMed", [fields.NAME, fields.GRADE]),
+    new Club("Model UN Club", "MUN", [fields.NAME, fields.GRADE])
 	]

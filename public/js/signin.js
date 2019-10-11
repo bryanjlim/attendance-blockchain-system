@@ -168,13 +168,13 @@ $("#signinbutton").click(function(e){
     updateAttendanceData();
     var shouldSubmit = true; 
 
-    // Verify that user is at Issaquah High School
+    /* Verify that user is at Issaquah High School
     if(Math.abs(latitude - 47.522533) > .05 ||  
        Math.abs(longitude - -122.028751) > .05)
     {
         $("#geolocationerror").show(); 
         shouldSubmit = false; 
-    }
+    }*/
 
     // If an element with id "name" exists
     if($('#name').length)
