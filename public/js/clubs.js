@@ -44,5 +44,7 @@ var clubList = [
     new Club("Issaquah Debate Team", "debateteam", [fields.NAME, fields.GRADE]),
     new Club("Issaquah Film Club", "IFC", [fields.NAME, fields.GRADE]),
     new Club("Sports Med Club", "SMed", [fields.NAME, fields.GRADE]),
-    new Club("Model UN Club", "MUN", [fields.NAME, fields.GRADE])
-	]
+    new Club("Model UN Club", "MUN", [fields.NAME, fields.GRADE]),
+    new Club("Issaquah DECA Club", "deca", [fields.NAME, fields.GRADE]),
+    new Club("Japanese Club", "japanc", [fields.NAME, fields.GRADE])
+	];
