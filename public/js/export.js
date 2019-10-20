@@ -66,7 +66,8 @@ function selectClub(club){
 	}
 }
 
-function loadExport(){			
+function loadExport(){	
+    makeLeaderboard();		
     for(let i=0; i<clubList.length; i++){
         if(clubList[i].shortHandName == clubToExport)
         {  
@@ -87,7 +88,7 @@ function loadExport(){
         }
     }
 	// Set hash to club shorthand
-	window.location.hash = clubToExport;
+    window.location.hash = clubToExport;
 
 }
 
@@ -276,6 +277,7 @@ $(document.body).on('click', "#exportAll", function (e) {
 	var header = [clubName + " Full Attendance List"];
     var rows = [header, firstRow];
     var rowNum = 2;
+      
     for(let i = 0; i < attendancedata.length; i++)
     {
         var signinentry = attendancedata[i];
@@ -287,9 +289,9 @@ $(document.body).on('click', "#exportAll", function (e) {
                 switch(firstRow[j])
                 {
                     case fields.NAME: 
-                    rowToAdd.push(signinentry.name); 
+                    rowToAdd.push(signinentry.name);
                     break;
-
+                    
                     case fields.ASBNUMBER:
                     rowToAdd.push(signinentry.asbNumber); 
                     break; 
@@ -326,7 +328,7 @@ $(document.body).on('click', "#exportAll", function (e) {
         let row = rowArray.join(",");
         csvContent += row + "\r\n";
     }); 
-    
+
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
     var csvFileName = (""+properClubName +" Entire Attendance.csv"); 
@@ -339,6 +341,47 @@ $(document.body).on('click', "#exportAll", function (e) {
     $("#exportForm")[0].reset(); 
 }); 
 
+function makeLeaderboard(){
+    var leaderboard = {};
+    var firstRow = ["Date"]; 
+    for(let i = 0; i < attendancedata.length; i++)
+    {
+        var signinentry = attendancedata[i];
+        if(signinentry.club == clubToExport)
+        {
+            for(let j = 0; j < firstRow.length; j++)
+            {
+                switch(firstRow[j])
+                {
+                    case fields.NAME: 
+                    rowToAdd.push(signinentry.name);
+                    if(fields.NAME in leaderboard){
+                        leaderboard[fields.NAME] = 1;
+                    } else{
+                        leaderboard[fields.NAME] = leaderboard[fields.NAME]+1;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    // Create items array
+    var items = Object.keys(leaderboard).map(function(key) {
+        return [key, dict[key]];});
+    // Sort the array based on the second element
+    items.sort(function(first, second) {
+        return second[1] - first[1];});
+     // Create a new array with only the first 5 items
+    var top5 = console.log(items.slice(0, 5));
+    //document.getElementById('output').innerHTML = leaderboard.keys;
+    //displayTop5(top5);
+}
+
+function displayTop5(top5){
+    for(var i = 1; i <= 5; i++){
+        document.getElementById('name'+i).innerHTML = top5[i];
+    }
+}
 
 function explodePie(e) {
 	for(var i = 0; i < e.dataSeries.dataPoints.length; i++) {
